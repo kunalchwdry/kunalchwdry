@@ -16,7 +16,7 @@ I build intelligent systems that connect **AI, software engineering, data, autom
 [![Discord](https://img.shields.io/badge/Discord-kunalchwdry-5865F2?style=for-the-badge&logo=discord&logoColor=white)](#connect)
 ![Profile Views](https://komarev.com/ghpvc/?username=kunalchwdry&color=0d1117&style=for-the-badge&label=PROFILE+VIEWS)
 
-<marquee scrollamount="6"><b>🏆 TECH ZEPHYR 4.0 GRAND FINALIST — IIT BHUBANESWAR</b> · 📊 p = 0.0043 · 🗃️ 10,384 records collected · ⚡ 24+ ADRs README</marquee>
+<marquee scrollamount="6"><b>🏆 TECH ZEPHYR 4.0 GRAND FINALIST — IIT BHUBANESWAR</b> · 📊 p = 0.0043 · 🗃️ 10,384 records collected · ⚡ 24+ ADRs </marquee>
 
 [Currently Building](#currently-building) · [Philosophy](#engineering-philosophy) · [Projects](#featured-projects) · [Tech Stack](#tech-stack) · [GitHub Activity](#github-activity) · [Mission 2030](#mission-2030)
 
