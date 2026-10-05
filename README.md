@@ -9,7 +9,7 @@
 **AI Engineer in Progress · AI Builder · Backend & Intelligent Systems**
 
 I build intelligent systems that connect **AI, software engineering, data, automation, and real-world workflows**.<br/>
-2nd-year BE AI & Data Science student from India, working across LLM applications, voice AI, secure backends, and adaptive systems.
+2nd-year BE AI & Data Science student from India, working across LLM applications, voice AI, secure backends, and adaptive systems. Currently building **FlowCare**, a provenance-first healthcare access platform with patient and hospital workflows.
 
 [![GitHub](https://img.shields.io/badge/GitHub-kunalchwdry-0d1117?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kunalchwdry)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Kunal_Choudhary-0d1117?style=for-the-badge&logo=linkedin&logoColor=0A66C2)](https://www.linkedin.com/in/kunal-choudhary-918270425/)
@@ -18,7 +18,7 @@ I build intelligent systems that connect **AI, software engineering, data, autom
 
 <marquee scrollamount="6"><b>🏆 TECH ZEPHYR 4.0 GRAND FINALIST — IIT BHUBANESWAR</b> · 📊 p = 0.0043 · 🗃️ 10,384 records collected · ⚡ 24+ ADRs </marquee>
 
-[Currently Building](#currently-building) · [Philosophy](#engineering-philosophy) · [Projects](#featured-projects) · [Tech Stack](#tech-stack) · [GitHub Activity](#github-activity) · [Mission 2030](#mission-2030)
+[Currently Building](#currently-building) · [FlowCare](#flowcare) · [Philosophy](#engineering-philosophy) · [Projects](#featured-projects) · [Tech Stack](#tech-stack) · [GitHub Activity](#github-activity) · [Mission 2030](#mission-2030)
 
 </div>
 
@@ -92,7 +92,8 @@ mission: 2030
 |---|---|
 | `AI / LLM Applications` | Gemini-powered assistants, multi-provider LLM architecture with failover |
 | `Voice AI` | Conversational voice pipelines with STT → LLM → TTS |
-| `Backend Engineering` | FastAPI services, JWT auth, RBAC, audit logging, integration testing |
+| `Backend Engineering` | FastAPI and Next.js services, JWT auth, RBAC, audit logging, integration testing |
+| `Healthcare Systems` | FlowCare: provenance-first discovery, appointment workflows, hospital portals, privacy-safe patient context |
 | `Data Systems` | PostgreSQL / Supabase schema design, Row Level Security, transactional logic |
 | `Adaptive Systems` | Productivity loops that plan, measure, and adapt |
 | `Automation` | Voice-driven desktop control, browser automation, app launching |
@@ -140,9 +141,11 @@ flowchart TB
     ME --> VOICE["Voice & Speech AI"]
     ME --> AUTO["AI Automation"]
     ME --> DATA["Data & AI"]
+    ME --> HEALTH["Healthcare Access"]
 
     SEC --> TRAXIS["TRAXIS"]
     SEC --> QB["Questbound"]
+    HEALTH --> FC["FlowCare"]
     ADP --> QB
     ADP --> IL["InnerLoop"]
     VOICE --> ANAYA["Anaya Health Assistant"]
@@ -155,14 +158,15 @@ flowchart TB
     classDef theme fill:#161b22,stroke:#30363d,color:#c9d1d9;
     classDef proj fill:#0d1117,stroke:#58a6ff,color:#58a6ff;
     class ME me;
-    class SEC,ADP,VOICE,AUTO,DATA theme;
-    class TRAXIS,QB,IL,ANAYA,SC,NL,DV proj;
+    class SEC,ADP,VOICE,AUTO,DATA,HEALTH theme;
+    class TRAXIS,QB,IL,ANAYA,SC,NL,DV,FC proj;
 ```
 
 ### Overview
 
 | Project | Domain | Core Stack | Repository |
 |---|---|---|---|
+| **FlowCare** | Provenance-first hospital discovery and outpatient coordination | Next.js · TypeScript · Supabase · PostgreSQL · RLS · Zod · Vitest | [FlowCare](https://github.com/kunalchwdry/FlowCare) · [Live](https://flowcare-five.vercel.app) |
 | **TRAXIS** | Polar expedition logistics & asset management | React · Vite · TypeScript · FastAPI · PostgreSQL · Supabase | [Traxis](https://github.com/kunalchwdry/Traxis) |
 | **Questbound** 🏆 | Life RPG — **Tech Zephyr 4.0 (IIT BBS) Grand Finale Finalist** | Next.js · React · PostgreSQL · Supabase · Drizzle ORM | [Questbound](https://github.com/kunalchwdry/Questbound) |
 | **InnerLoop** | Student productivity & continuous improvement | React · Vite · Supabase · PostgreSQL · Tailwind CSS | — |
@@ -172,6 +176,84 @@ flowchart TB
 | **DataVortex** | National data-science competition — 3-round saga | Python · scikit-learn · pandas · keyless APIs · Jupyter | [data-vortex-2026](https://github.com/kunalchwdry/data-vortex-2026) |
 
 > Click any section below to expand the architecture and engineering details.
+
+---
+
+### FlowCare
+
+**Provenance-first hospital discovery and outpatient coordination for Indian cities**
+
+[![FlowCare](https://img.shields.io/badge/Live-flowcare--five.vercel.app-1f6feb?style=flat-square)](https://flowcare-five.vercel.app) [![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org/) [![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20RLS-3ecf8e?style=flat-square&logo=supabase&logoColor=white)](https://supabase.com/)
+
+FlowCare treats healthcare discovery as a **trust and data-provenance problem**, not a listings problem. Every published claim is designed to be traceable to a source, verification role and date; when that chain is missing, the product shows uncertainty instead of inventing confidence.
+
+`Next.js 15` `TypeScript` `Tailwind` `Supabase` `PostgreSQL` `RLS` `Zod` `Vitest` `Vercel`
+
+<details>
+<summary><b>What the system does</b></summary>
+
+<br/>
+
+- **Discovery:** search hospitals by locality, specialty, service or plain language; compare facilities without a hidden “best hospital” ranking.
+- **Booking:** appointment requests use the hospital's published session; the server reads the hospital, department and time instead of trusting client-supplied identifiers.
+- **Hospital operations:** relationship-scoped appointment, queue and patient-context views with explicit staff permissions.
+- **Patient reliability:** official completed, cancelled, late-cancel and no-show outcomes are surfaced as appointment reliability—not a clinical, financial or medical-quality score.
+- **Verified visit history:** patients see real completed FlowCare visits; hospitals see only privacy-safe recent visits within their appointment relationship.
+- **Patient traffic:** appointment-derived waiting, consultation and completion signals with freshness-aware unavailable states.
+
+</details>
+
+<details>
+<summary><b>Architecture and security</b></summary>
+
+<br/>
+
+```mermaid
+flowchart LR
+    B["Browser"] --> R["Next.js route handler"]
+    R --> V["Validation + auth + rate limit"]
+    V --> P["Repository port"]
+    P --> D["Demo repository"]
+    P --> L["Supabase repository"]
+    L --> DB["Postgres + RLS + SECURITY DEFINER RPCs"]
+    DB --> A["Append-only appointment events"]
+    DB --> F["Provenance and freshness"]
+
+    classDef main fill:#0d1117,stroke:#58a6ff,color:#c9d1d9;
+    classDef secure fill:#0d1117,stroke:#3fb950,color:#c9d1d9;
+    class B,R,V,P,D,L main;
+    class DB,A,F secure;
+```
+
+- The browser never receives service-role credentials.
+- Hospital reads are scoped through an existing appointment or membership relationship; there is no arbitrary patient-id search.
+- Reliability events are generated from official appointment transitions and protected by a unique `(appointment_id, event_type)` constraint for idempotency.
+- Database and RPC errors are rendered as errors, not silently converted into empty arrays or fake defaults.
+- The AI assistant may extract structured search intent, but it never writes SQL or confirms an appointment.
+
+</details>
+
+<details>
+<summary><b>Engineering depth</b></summary>
+
+<br/>
+
+| Area | Implementation |
+|---|---|
+| Provenance | Source, verifier and freshness are first-class data, not UI copy |
+| Authorization | Patient ownership, hospital membership and PostgreSQL RLS |
+| Appointment integrity | Versioned transitions, server-authoritative payloads and idempotency |
+| Reliability | Official event trigger, immutable event projection and verified visit history |
+| Failure handling | Explicit loading, empty, unauthorized and real database-error states |
+| Testing | Typecheck, unit/API suites, security/isolation coverage and production build |
+
+The repository includes migrations `0023`, `0025` and `0026` for care-access truth,
+appointment-derived traffic and patient reliability. Migration `0026` is designed
+to be additive and idempotent; the deployed application also derives real
+existing appointment/event/visit data through RLS-scoped fallback reads while the
+production database migration is being applied.
+
+</details>
 
 ---
 
@@ -800,6 +882,7 @@ You attack with **"foundations first"**, counter with **"validate before you cla
 | **Automation tools** | Voice-driven desktop and browser automation |
 | **Embedded AI** | On-device speech processing on microcontrollers |
 | **Real-world operational software** | Logistics, healthcare access, student workflows |
+| **Trustworthy product systems** | Provenance, freshness, authorization, audit trails, honest uncertainty |
 
 ---
 
