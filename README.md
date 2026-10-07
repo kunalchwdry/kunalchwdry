@@ -865,7 +865,7 @@ You attack with **"foundations first"**, counter with **"validate before you cla
    records self-collected ...... 10,384  → 21 sweeps · 5 languages
    significant results ......... 1       → p = 0.0043
    ADRs written ................ 24+     → Questbound
-   secrets hidden in profile ... 1       → did you find it?
+   secrets hidden in profile ... 1       → did you find it??
 ```
 
 ---
