@@ -1,1097 +1,636 @@
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&height=210&color=gradient&customColorList=6,11,15&text=KUNAL%20CHOUDHARY&fontSize=44&fontColor=ffffff&fontAlignY=36&desc=AI%20Engineer%20in%20Progress%20%C2%B7%20Mission%202030&descAlignY=56&descSize=17&animation=fadeIn" width="100%" />
-
-<a href="https://github.com/kunalchwdry">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=20&pause=1200&color=58A6FF&center=true&vCenter=true&width=720&lines=AI+Engineer+in+Progress;Backend+%26+Intelligent+Systems;IIT+Bhubaneswar+Tech+Zephyr+4.0+Finalist+%F0%9F%8F%86;3-round+national+hackathon+shipped;10%2C384+live-collected+records+%C2%B7+p%3D0.0043;Mission+2030" alt="Typing SVG" />
-</a>
-
-**AI Engineer in Progress · AI Builder · Backend & Intelligent Systems**
-
-I build intelligent systems that connect **AI, software engineering, data, automation, and real-world workflows**.<br/>
-2nd-year BE AI & Data Science student from India, working across LLM applications, voice AI, secure backends, and adaptive systems. Currently building **FlowCare**, a provenance-first healthcare access platform with patient and hospital workflows.
-
-[![GitHub](https://img.shields.io/badge/GitHub-kunalchwdry-0d1117?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kunalchwdry)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kunal_Choudhary-0d1117?style=for-the-badge&logo=linkedin&logoColor=0A66C2)](https://www.linkedin.com/in/kunal-choudhary-918270425/)
-[![Discord](https://img.shields.io/badge/Discord-kunalchwdry-5865F2?style=for-the-badge&logo=discord&logoColor=white)](#connect)
-![Profile Views](https://komarev.com/ghpvc/?username=kunalchwdry&color=0d1117&style=for-the-badge&label=PROFILE+VIEWS)
-
-<marquee scrollamount="6"><b>🏆 TECH ZEPHYR 4.0 GRAND FINALIST — IIT BHUBANESWAR</b> · 📊 p = 0.0043 · 🗃️ 10,384 records collected · ⚡ 24+ ADRs </marquee>
-
-[Currently Building](#currently-building) · [FlowCare](#flowcare) · [Philosophy](#engineering-philosophy) · [Projects](#featured-projects) · [Tech Stack](#tech-stack) · [GitHub Activity](#github-activity) · [Mission 2030](#mission-2030)
-
-</div>
-
+::: {align="center"}
+`<img src="https://capsule-render.vercel.app/api?type=waving&height=230&color=0:050816,35:0d1b3d,70:123a66,100:7c3aed&text=KUNAL%20CHOUDHARY&fontSize=46&fontColor=ffffff&fontAlignY=35&desc=BUILDING%20INTELLIGENT%20SYSTEMS%20%E2%80%A2%20MISSION%202030&descAlignY=57&descSize=16&animation=fadeIn" width="100%" alt="Kunal Choudhary — Mission 2030"/>`{=html}
+`<a href="https://readme-typing-svg.demolab.com">`{=html}
+`<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=19&pause=1100&color=58A6FF&center=true&vCenter=true&width=850&lines=AI+ENGINEERING+%2F+BACKEND+SYSTEMS;DATA+INTEGRITY+%E2%86%92+INTELLIGENCE+%E2%86%92+IMPACT;TECH+ZEPHYR+4.0+%7C+GRAND+FINALE+FINALIST;10%2C384+LIVE-COLLECTED+RECORDS+%7C+p%3D0.0043;BUILD.+MEASURE.+BREAK.+REBUILD.;MISSION+2030+IS+IN+PROGRESS." alt="Animated engineering tagline"/>`{=html}
+`</a>`{=html}
+`<br/>`{=html}
+![GitHub](https://img.shields.io/badge/GitHub-kunalchwdry-0d1117?style=for-the-badge&logo=github&logoColor=white)
+![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0d1117?style=for-the-badge&logo=linkedin&logoColor=0A66C2)
+![Tech](https://img.shields.io/badge/TECH%20ZEPHYR%204.0-Grand%20Finale%20Finalist-7c3aed?style=for-the-badge&logo=trophy&logoColor=white)
+![Profile](https://komarev.com/ghpvc/?username=kunalchwdry&style=for-the-badge&color=0d1117&label=VISITORS)
+AI engineer in progress. Systems thinker by habit. Builder by default.
+I build systems where AI meets real software engineering --- from
+secure APIs and data pipelines to voice-first applications and adaptive
+products.
+BE Artificial Intelligence & Data Science · India · Mission 2030
+:::
 ---
+``` text
+┌──(kunal㉿forge-x)-[~/mission-2030]
+└─$ ./status --verbose
 
-```text
-┌──(kunal㉿forge-x)-[~]
-└─$ whoami
-   ai_engineer_in_progress --year=2 --base=India
-└─$ cat current_status.log
-   [OK]   building AI systems          ▓▓▓▓▓▓▓▓▓░  shipping
-   [OK]   secure backends             ▓▓▓▓▓▓▓▓▓░  production-minded
-   [▚▚▚]  ML foundations              ▓▓▓▓▓░░░░░  going deeper
-└─$ ./life --run
-   building → learning → experimenting → shipping → repeat
+  IDENTITY      AI ENGINEER IN PROGRESS
+  SPECIALTY     Intelligent systems · Backend · Applied AI
+  PRINCIPLE     Foundations first. Validate before you claim.
+  LOOP          BUILD → MEASURE → LEARN → SHIP → REPEAT
+  FINAL BOSS    AI INFRASTRUCTURE [NOT DEFEATED]
 ```
-
----
-
-## 🎮 Save File №1 — Character Sheet
-
-```text
-╭──────────────── SAVE FILE №1 ────────────────╮
-  PLAYER   : Kunal Choudhary
-  CLASS    : AI Engineer (Lv.2 → Lv.99 @ 2030)
-  GUILD    : Keystone School of Engineering, Pune
-  PARTY    : Forge-X · Team SHIELD · Questbound
-  TITLE    : 🏆 Grand Finalist — Tech Zephyr 4.0
-╰──────────────────────────────────────────────╯
-
-  BACKEND        ███████████████░░░░░  75
-  AI / LLM       ██████████████░░░░░░  70
-  DATA SCIENCE   ████████████░░░░░░░░  60
-  VOICE AI       ████████████░░░░░░░░  60
-  EMBEDDED       ██████████░░░░░░░░░░  50
-  SHIP-IT        ████████████████████ 100
-
-  ☠ BOSS — MISSION 2030 ......... [AWAKE] [ACCEPTING CHALLENGERS]
+`01` / THE PLAYER
+```{=html}
+<table>
 ```
-
----
-
-## About
-
-```yaml
-name: Kunal Choudhary
-role: AI Engineer in Progress
-education: BE Artificial Intelligence & Data Science (2nd year)
-location: India
-
-direction: AI Engineering → Intelligent Systems → AI Products → AI Infrastructure
-
-builds:
-  - Secure backend platforms (JWT, RBAC, PostgreSQL RLS)
-  - Server-authoritative transactional systems
-  - LLM-powered and voice-first applications
-  - Adaptive productivity systems
-  - Desktop and workflow automation
-  - Embedded speech-processing systems
-  - End-to-end data science pipelines (collection → model → report)
-
-approach: building → learning → experimenting → shipping
-mission: 2030
+```{=html}
+<tr>
 ```
+```{=html}
+<td width="60%" valign="top">
+```
+I'm a second-year BE AI & Data Science student focused on building the
+engineering foundations behind useful AI products.
+My work spans LLM applications, voice AI, backend architecture, data
+science, automation, and embedded speech systems. I care about what
+happens underneath the demo: authorization, data quality, failure
+states, reproducibility, and whether a claim can actually be verified.
+Right now, I'm building and hardening projects that turn messy
+real-world workflows into systems with clear rules, traceable data, and
+measurable outcomes.
+Current north star: AI Engineering → Intelligent Systems → AI
+Products → AI Infrastructure.
+```{=html}
+</td>
+```
+```{=html}
+<td width="40%" valign="top">
+```
+``` yaml
+player: Kunal Choudhary
+class: AI Engineer
+level: 02 → 99
+guild: Forge-X
+quest: Mission 2030
 
+loadout:
+  backend: FastAPI / Next.js
+  data: PostgreSQL / Supabase
+  intelligence: LLMs / NLP
+  voice: STT → LLM → TTS
+  mindset: ship_and_verify
+
+boss:
+  name: AI Infrastructure
+  status: ACTIVE
+```
+```{=html}
+</td>
+```
+```{=html}
+</tr>
+```
+```{=html}
+</table>
+```
+`02` / CURRENT OPERATIONS
 ---
-
-## Currently Building
-
-| Area | What that looks like in my projects |
-|---|---|
-| `AI / LLM Applications` | Gemini-powered assistants, multi-provider LLM architecture with failover |
-| `Voice AI` | Conversational voice pipelines with STT → LLM → TTS |
-| `Backend Engineering` | FastAPI and Next.js services, JWT auth, RBAC, audit logging, integration testing |
-| `Healthcare Systems` | FlowCare: provenance-first discovery, appointment workflows, hospital portals, privacy-safe patient context |
-| `Data Systems` | PostgreSQL / Supabase schema design, Row Level Security, transactional logic |
-| `Adaptive Systems` | Productivity loops that plan, measure, and adapt |
-| `Automation` | Voice-driven desktop control, browser automation, app launching |
-| `Embedded AI` | ESP32-S3 + ESP-SR speech processing and noise cancellation |
-| `Data Science Competitions` | Multi-round national hackathon pipelines — real-time collection, NLP, statistical testing |
-
+Mission                             What I'm working on
 ---
-
-## Engineering Philosophy
-
-I don't treat AI as a feature bolted onto an app. Intelligence is only as reliable as the data, backend, and authorization layers underneath it.
-
-```mermaid
+FlowCare                        Provenance-first hospital discovery
+and outpatient coordination, with
+patient and hospital workflows
+TRAXIS                          Multi-tenant polar expedition
+logistics, assets, inventory, and
+operational access control
+Questbound                      Adaptive productivity RPG with
+server-authoritative progression
+and an AI companion
+DataVortex                      Reproducible, three-round data
+science pipeline: restoration → NLP
+→ live signal tracking
+Learning track                  ML foundations, PyTorch,
+evaluation, RAG, agentic systems,
+and reliable backend design
+> **Operating principle:** a feature is not finished because it works
+> once. It is finished when its behavior, boundaries, and failure modes
+> are understood.
+---
+`03` / ENGINEERING PHILOSOPHY
+``` mermaid
 flowchart LR
-    P["Problem"] --> S["System Design"]
-    S --> D["Data Model"]
-    D --> B["Backend & Security"]
-    B --> AI["AI / Intelligence"]
-    AI --> UX["User Experience"]
-    UX --> M["Measure"]
-    M --> I["Iterate"]
-    I -.-> P
+    P["Real problem"] --> S["System design"]
+    S --> D["Data model"]
+    D --> A["Auth & backend"]
+    A --> I["AI / intelligence"]
+    I --> U["User experience"]
+    U --> M["Measure"]
+    M --> R["Review & iterate"]
+    R -.-> P
 
-    classDef core fill:#0d1117,stroke:#58a6ff,color:#c9d1d9;
-    class P,S,D,B,AI,UX,M,I core;
+    classDef core fill:#0b1220,stroke:#58a6ff,color:#e6edf3,stroke-width:1.5px;
+    class P,S,D,A,I,U,M,R core;
 ```
-
-- **Foundations first** — schema design, server-side validation, and access control before AI.
-- **Structured context over loose prompts** — AI works better when it reasons over well-modeled data.
-- **Server-authoritative logic** — critical state (permissions, rewards, records) is never trusted to the client.
-- **Validate before you claim** — a number without a validation story is just decoration.
-
+Foundations before features. Data models, server-side
+validation, and access control come before AI glitter.
+The server owns critical state. Permissions, rewards, and
+important transitions are never trusted to the browser.
+Structured context beats prompt chaos. Useful intelligence
+depends on well-modeled inputs and explicit constraints.
+Failures are part of the product. Loading, empty, unauthorized,
+stale, and error states deserve deliberate behavior.
+Evidence over impressive numbers. Metrics need a reproducible
+method, a clear denominator, and honest limitations.
+AI is a component, not the architecture. The surrounding system
+determines whether intelligence is safe and useful.
 ---
-
-## Featured Projects
-
-### Project Map
-
-```mermaid
-flowchart TB
-    ME(("Kunal"))
-
-    ME --> SEC["Secure Backend Systems"]
-    ME --> ADP["Adaptive Systems"]
-    ME --> VOICE["Voice & Speech AI"]
-    ME --> AUTO["AI Automation"]
-    ME --> DATA["Data & AI"]
-    ME --> HEALTH["Healthcare Access"]
-
-    SEC --> TRAXIS["TRAXIS"]
-    SEC --> QB["Questbound"]
-    HEALTH --> FC["FlowCare"]
-    ADP --> QB
-    ADP --> IL["InnerLoop"]
-    VOICE --> ANAYA["Anaya Health Assistant"]
-    VOICE --> SC["SHIELD-COM"]
-    VOICE --> NL["NoLimi"]
-    AUTO --> NL
-    DATA --> DV["DataVortex · 3-round competition"]
-
-    classDef me fill:#1f6feb,stroke:#58a6ff,color:#ffffff;
-    classDef theme fill:#161b22,stroke:#30363d,color:#c9d1d9;
-    classDef proj fill:#0d1117,stroke:#58a6ff,color:#58a6ff;
-    class ME me;
-    class SEC,ADP,VOICE,AUTO,DATA,HEALTH theme;
-    class TRAXIS,QB,IL,ANAYA,SC,NL,DV,FC proj;
-```
-
-### Overview
-
-| Project | Domain | Core Stack | Repository |
-|---|---|---|---|
-| **FlowCare** | Provenance-first hospital discovery and outpatient coordination | Next.js · TypeScript · Supabase · PostgreSQL · RLS · Zod · Vitest | [FlowCare](https://github.com/kunalchwdry/FlowCare) · [Live](https://flowcare-five.vercel.app) |
-| **TRAXIS** | Polar expedition logistics & asset management | React · Vite · TypeScript · FastAPI · PostgreSQL · Supabase | [Traxis](https://github.com/kunalchwdry/Traxis) |
-| **Questbound** 🏆 | Life RPG — **Tech Zephyr 4.0 (IIT BBS) Grand Finale Finalist** | Next.js · React · PostgreSQL · Supabase · Drizzle ORM | [Questbound](https://github.com/kunalchwdry/Questbound) |
-| **InnerLoop** | Student productivity & continuous improvement | React · Vite · Supabase · PostgreSQL · Tailwind CSS | — |
-| **Anaya Health Assistant** | Voice AI for healthcare access | LiveKit Agents · Gemini · Deepgram · Murf Falcon · SQLite | [anaya-health-assistant](https://github.com/kunalchwdry/anaya-health-assistant) |
-| **SHIELD-COM** | Embedded speech processing for soldier communication | ESP32-S3 · ESP-SR | — |
-| **NoLimi** | Personal AI desktop assistant | Python · Gemini API · Speech Recognition · TTS | — |
-| **DataVortex** | National data-science competition — 3-round saga | Python · scikit-learn · pandas · keyless APIs · Jupyter | [data-vortex-2026](https://github.com/kunalchwdry/data-vortex-2026) |
-
-> Click any section below to expand the architecture and engineering details.
-
----
-
-### FlowCare
-
-**Provenance-first hospital discovery and outpatient coordination for Indian cities**
-
-[![FlowCare](https://img.shields.io/badge/Live-flowcare--five.vercel.app-1f6feb?style=flat-square)](https://flowcare-five.vercel.app) [![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org/) [![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20RLS-3ecf8e?style=flat-square&logo=supabase&logoColor=white)](https://supabase.com/)
-
-FlowCare treats healthcare discovery as a **trust and data-provenance problem**, not a listings problem. Every published claim is designed to be traceable to a source, verification role and date; when that chain is missing, the product shows uncertainty instead of inventing confidence.
-
-`Next.js 15` `TypeScript` `Tailwind` `Supabase` `PostgreSQL` `RLS` `Zod` `Vitest` `Vercel`
-
-<details>
-<summary><b>What the system does</b></summary>
-
-<br/>
-
-- **Discovery:** search hospitals by locality, specialty, service or plain language; compare facilities without a hidden “best hospital” ranking.
-- **Booking:** appointment requests use the hospital's published session; the server reads the hospital, department and time instead of trusting client-supplied identifiers.
-- **Hospital operations:** relationship-scoped appointment, queue and patient-context views with explicit staff permissions.
-- **Patient reliability:** official completed, cancelled, late-cancel and no-show outcomes are surfaced as appointment reliability—not a clinical, financial or medical-quality score.
-- **Verified visit history:** patients see real completed FlowCare visits; hospitals see only privacy-safe recent visits within their appointment relationship.
-- **Patient traffic:** appointment-derived waiting, consultation and completion signals with freshness-aware unavailable states.
-
-</details>
-
-<details>
-<summary><b>Architecture and security</b></summary>
-
-<br/>
-
-```mermaid
+`04` / PROJECT ARCHIVE
+◈ FlowCare
+Provenance-first healthcare discovery & outpatient coordination
+![Repository](https://img.shields.io/badge/Repository-FlowCare-0d1117?style=flat-square&logo=github)
+![Live](https://img.shields.io/badge/Live%20Demo-Open-1f6feb?style=flat-square&logo=vercel)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=nextdotjs)
+![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20RLS-3ecf8e?style=flat-square&logo=supabase)
+FlowCare treats hospital discovery as a data provenance and trust
+problem, not merely a directory problem. Claims should have a source,
+verifier, and freshness context; when certainty is missing, the system
+should expose the uncertainty rather than manufacture confidence.
+Stack: Next.js 15 · TypeScript · Tailwind CSS · Supabase ·
+PostgreSQL · RLS · Zod · Vitest · Vercel
+``` mermaid
 flowchart LR
-    B["Browser"] --> R["Next.js route handler"]
-    R --> V["Validation + auth + rate limit"]
-    V --> P["Repository port"]
-    P --> D["Demo repository"]
-    P --> L["Supabase repository"]
-    L --> DB["Postgres + RLS + SECURITY DEFINER RPCs"]
-    DB --> A["Append-only appointment events"]
-    DB --> F["Provenance and freshness"]
+    B["Browser"] --> R["Next.js route"]
+    R --> V["Validation · auth · rate limits"]
+    V --> P["Repository boundary"]
+    P --> DEMO["Demo repository"]
+    P --> LIVE["Supabase repository"]
+    LIVE --> DB[("PostgreSQL + RLS")]
+    DB --> EVT["Appointment events"]
+    DB --> PROV["Provenance & freshness"]
 
-    classDef main fill:#0d1117,stroke:#58a6ff,color:#c9d1d9;
-    classDef secure fill:#0d1117,stroke:#3fb950,color:#c9d1d9;
-    class B,R,V,P,D,L main;
-    class DB,A,F secure;
+    classDef app fill:#0b1220,stroke:#58a6ff,color:#e6edf3;
+    classDef data fill:#0b1220,stroke:#3fb950,color:#e6edf3;
+    class B,R,V,P,DEMO,LIVE app;
+    class DB,EVT,PROV data;
 ```
-
-- The browser never receives service-role credentials.
-- Hospital reads are scoped through an existing appointment or membership relationship; there is no arbitrary patient-id search.
-- Reliability events are generated from official appointment transitions and protected by a unique `(appointment_id, event_type)` constraint for idempotency.
-- Database and RPC errors are rendered as errors, not silently converted into empty arrays or fake defaults.
-- The AI assistant may extract structured search intent, but it never writes SQL or confirms an appointment.
-
-</details>
-
-<details>
-<summary><b>Engineering depth</b></summary>
-
-<br/>
-
-| Area | Implementation |
-|---|---|
-| Provenance | Source, verifier and freshness are first-class data, not UI copy |
-| Authorization | Patient ownership, hospital membership and PostgreSQL RLS |
-| Appointment integrity | Versioned transitions, server-authoritative payloads and idempotency |
-| Reliability | Official event trigger, immutable event projection and verified visit history |
-| Failure handling | Explicit loading, empty, unauthorized and real database-error states |
-| Testing | Typecheck, unit/API suites, security/isolation coverage and production build |
-
-The repository includes migrations `0023`, `0025` and `0026` for care-access truth,
-appointment-derived traffic and patient reliability. Migration `0026` is designed
-to be additive and idempotent; the deployed application also derives real
-existing appointment/event/visit data through RLS-scoped fallback reads while the
-production database migration is being applied.
-
-</details>
-
+What it explores - Hospital discovery by locality, specialty,
+service, and plain-language intent. - Appointment request and
+confirmation workflows with server-authoritative data. - Hospital-side
+operational views scoped to staff membership and appointment
+relationships. - Appointment-derived waiting and consultation signals,
+with explicit stale/unavailable states. - Patient visit history and
+reliability outcomes based on official appointment events. - AI-assisted
+search intent extraction without allowing the model to write SQL or
+confirm bookings.
+Engineering focus - PostgreSQL Row Level Security and
+relationship-scoped access. - Validated, version-aware appointment
+transitions and idempotent event handling. - Clear separation between
+demo data and live database paths. - Explicit error states rather than
+silently converting database failures into empty results. - Provenance
+and freshness treated as data-model concerns, not just UI labels.
+Honest status note: the repository includes additive migrations for
+care-access truth, appointment-derived traffic, and patient reliability.
+Production behavior depends on the deployed database migration and
+live-path verification; demo-backed flows should not be mistaken for
+verified live hospital operations.
 ---
-
-### TRAXIS
-
-**Integrated Polar Expedition Logistics & Asset Management System**
-
-`Smart India Hackathon 2026 (PS 26062 · MoES / NCPOR) — built as our option B; we entered with SHIELD-COM`
-
-A multi-tenant operational platform for managing polar expeditions — personnel, cargo, assets, inventory, incidents, and organization access — with authorization enforced on the server and at the database layer.
-
-`React` `Vite` `TypeScript` `FastAPI` `PostgreSQL` `Supabase` `JWT` `RBAC` `RLS`
-
-<details>
-<summary><b>Authorization Pipeline</b></summary>
-
-<br/>
-
-Every request passes through a server-authoritative chain. The client never decides what a user is allowed to see or change.
-
-```mermaid
+◈ TRAXIS
+Polar expedition logistics & asset management
+![Repository](https://img.shields.io/badge/Repository-TRAXIS-0d1117?style=flat-square&logo=github)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=flat-square&logo=fastapi)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Data-4169E1?style=flat-square&logo=postgresql)
+Smart India Hackathon 2026 · Problem Statement 26062 · MoES / NCPOR
+TRAXIS is a multi-tenant operations platform concept for polar
+expedition logistics: personnel, cargo, assets, inventory, incidents,
+and organization access workflows.
+Stack: React · Vite · TypeScript · FastAPI · PostgreSQL · Supabase ·
+JWT · RBAC · RLS
+``` mermaid
 sequenceDiagram
-    autonumber
-    participant C as React Client
+    participant C as Client
     participant API as FastAPI
-    participant J as JWT Verification
-    participant O as Organization Resolution
-    participant R as RBAC / Scoped Permissions
+    participant AUTH as Token verification
+    participant TEN as Tenant resolver
+    participant ACL as Role / permission checks
     participant DB as PostgreSQL + RLS
 
-    C->>API: Request with access token
-    API->>J: Verify token
-    J-->>API: Authenticated user
-    API->>O: Resolve organization context
-    O-->>API: Tenant scope
-    API->>R: Check role and scoped permissions
-    R-->>API: Allowed / denied
-    API->>DB: Query within tenant scope
-    DB-->>API: Rows filtered by RLS policies
+    C->>API: Request + access token
+    API->>AUTH: Verify identity
+    AUTH-->>API: Authenticated subject
+    API->>TEN: Resolve organization
+    TEN-->>API: Tenant context
+    API->>ACL: Check role and scope
+    ACL-->>API: Allow / deny
+    API->>DB: Tenant-scoped operation
+    DB-->>API: RLS-filtered result
     API-->>C: Authorized response
 ```
-
-- **Defense in depth** — authorization is checked in the API layer *and* enforced by PostgreSQL Row Level Security.
-- **Multi-tenancy** — organization resolution scopes every operation to the correct tenant.
-- **Auditability** — audit logging records operational actions.
-
-</details>
-
-<details>
-<summary><b>Operational Domain Model</b></summary>
-
-<br/>
-
-```mermaid
-flowchart LR
-    ORG["Organization"] --> ACC["Access Workflows"]
-    ORG --> EXP["Expedition Lifecycle"]
-    EXP --> PER["Personnel"]
-    EXP --> CAR["Cargo"]
-    EXP --> AST["Assets"]
-    EXP --> INV["Inventory"]
-    EXP --> INC["Incidents"]
-
-    PER --> AUD["Audit Log"]
-    CAR --> AUD
-    AST --> AUD
-    INV --> AUD
-    INC --> AUD
-    ACC --> AUD
-
-    classDef node fill:#0d1117,stroke:#58a6ff,color:#c9d1d9;
-    classDef audit fill:#161b22,stroke:#f78166,color:#f78166;
-    class ORG,ACC,EXP,PER,CAR,AST,INV,INC node;
-    class AUD audit;
-```
-
-</details>
-
-<details>
-<summary><b>What I Built</b></summary>
-
-<br/>
-
-- Designed a multi-tenant architecture for polar expedition logistics.
-- Implemented JWT authentication with role-based access control and scoped permissions.
-- Secured data access with PostgreSQL Row Level Security.
-- Modeled expedition lifecycle, personnel, cargo, assets, inventory, and incident workflows.
-- Built organization access workflows for tenant onboarding and membership.
-- Added audit logging for operational traceability.
-- Wrote backend integration tests to validate authorization and workflow behavior.
-
-</details>
-
+Engineering focus - Server-side JWT verification and role-based
+authorization. - Organization-scoped operations and multi-tenant
+boundaries. - PostgreSQL RLS as a second authorization layer. -
+Operational models for expedition lifecycle, personnel, cargo, assets,
+inventory, and incidents. - Audit logging and integration tests for
+access and workflow behavior.
+Core rule: the client can request an action; it does not get to
+decide whether that action is allowed.
 ---
-
-### Questbound
-
-**A Life RPG — Gamified Adaptive Productivity Platform**
-
-`🏆 Tech Zephyr 4.0 (IIT Bhubaneswar) — Grand Finale Finalist`
-
-Questbound turns productivity into an adaptive game system. Quests, XP, gold, attributes, and streaks are calculated by a server-side transactional engine, while an AI companion — the Oracle — adapts to the user's emotional context. Selected for the offline Grand Finale at IIT Bhubaneswar: pitch + live demo + technical Q&A.
-
-`Next.js` `React` `PostgreSQL` `Supabase` `Drizzle ORM` `Multi-Provider LLM` `Naive Bayes`
-
-<details>
-<summary><b>Server-Authoritative Game Engine</b></summary>
-
-<br/>
-
-Rewards are never calculated on the client. Every progression change is validated and committed as a transaction.
-
-```mermaid
+◈ Questbound
+A life RPG powered by adaptive productivity systems
+![Repository](https://img.shields.io/badge/Repository-Questbound-0d1117?style=flat-square&logo=github)
+![Grand](https://img.shields.io/badge/Tech%20Zephyr%204.0-IIT%20Bhubaneswar%20Finalist-7c3aed?style=flat-square&logo=trophy)
+🏆 Tech Zephyr 4.0 --- Grand Finale Finalist, IIT Bhubaneswar
+Questbound turns productivity into a game system built around quests,
+XP, gold, attributes, streaks, and an AI companion called the Oracle.
+Selected for the offline Grand Finale, involving a pitch, live demo, and
+technical Q&A.
+Stack: Next.js · React · PostgreSQL · Supabase · Drizzle ORM ·
+Multi-provider LLM routing · Naive Bayes
+``` mermaid
 flowchart LR
-    A["Player completes quest"] --> B["Server API"]
-    B --> C{"Authorized<br/>& valid?"}
-    C -- No --> X["Reject request"]
-    C -- Yes --> D["Begin Transaction"]
-    D --> E["Calculate XP & Gold"]
-    E --> F["Update Attributes"]
-    F --> G["Update Streaks"]
-    G --> H["Commit"]
-    H --> I["Return new player state"]
+    Q["Quest completed"] --> API["Server API"]
+    API --> V{"Authorized & valid?"}
+    V -- No --> X["Reject"]
+    V -- Yes --> TX["Transaction"]
+    TX --> XP["Calculate XP / gold"]
+    XP --> ATTR["Update attributes"]
+    ATTR --> ST["Update streaks"]
+    ST --> COMMIT["Commit state"]
+    COMMIT --> OUT["Return player state"]
 
-    classDef ok fill:#0d1117,stroke:#3fb950,color:#c9d1d9;
-    classDef bad fill:#0d1117,stroke:#f85149,color:#f85149;
-    class A,B,D,E,F,G,H,I ok;
+    classDef ok fill:#0b1220,stroke:#58a6ff,color:#e6edf3;
+    classDef bad fill:#220d12,stroke:#f85149,color:#f85149;
+    class Q,API,TX,XP,ATTR,ST,COMMIT,OUT ok;
     class X bad;
 ```
-
-- **Anti-cheat by design** — the client submits actions, the server decides outcomes.
-- **Transactional integrity** — XP, gold, attributes, and streaks update atomically.
-
-</details>
-
-<details>
-<summary><b>Oracle AI Companion</b></summary>
-
-<br/>
-
-```mermaid
-flowchart LR
-    U["User message"] --> NB["Local Naive Bayes<br/>Emotion Classification"]
-    NB --> CTX["Context Builder<br/>emotion + player state"]
-    CTX --> RT["LLM Provider Router"]
-    RT --> P1["Primary Provider"]
-    RT -. failover .-> P2["Fallback Provider"]
-    P1 --> RES["Oracle Response"]
-    P2 --> RES
-
-    classDef n fill:#0d1117,stroke:#a371f7,color:#c9d1d9;
-    class U,NB,CTX,RT,P1,P2,RES n;
-```
-
-- **Local emotion classification** with Naive Bayes — lightweight, runs without an external API call.
-- **Multi-provider LLM architecture** with failover for resilience.
-
-</details>
-
-<details>
-<summary><b>What I Built</b></summary>
-
-<br/>
-
-- Engineered a server-side transactional game engine for quests, XP, gold, attributes, and streaks.
-- Designed server-authoritative reward calculation with authorization checks.
-- Integrated adaptive planning into the RPG progression model.
-- Built the Oracle AI companion with multi-provider LLM routing and failover.
-- Implemented local Naive Bayes emotion classification.
-- Added community and social features around shared progress.
-
-**Engineering depth (the finale demo story):**
-
-- **ADR-driven development** — 24+ architecture decision records (deterministic core / LLM-periphery split, `quest_events` append-only ledger, plan-state-as-metadata, sandbox strategy).
-- **Test hardening** — 31 pure-logic checks, pg-mem SQL verification, and a 40-check end-to-end suite on embedded Postgres.
-- **Zero-loss production migration** — fingerprint-verified additive migrations with advisory locking; 77 live quest rows migrated with fingerprints preserved.
-- **Deploy-ready** — Next.js at repo root for zero-config Vercel builds, `.env.example` contract, no secrets in the tree.
-
-</details>
-
+The interesting engineering - Server-authoritative reward
+calculation; the browser never chooses its own rewards. - Transactional
+updates for progression state. - Oracle companion with multi-provider
+routing and fallback behavior. - Lightweight local Naive Bayes emotion
+classification feeding structured context. - 24+ architecture decision
+records documenting key system decisions. - Test hardening across pure
+logic, SQL behavior, and end-to-end flows. - Additive migration workflow
+with fingerprint checks and advisory locking.
+Design split: deterministic code handles critical state; the LLM
+sits at the product's flexible edge.
 ---
-
-### DataVortex
-
-**National Data Science Competition — the 3-round "Social Engine" saga**
-
-`AARUUSH '26 (SRM IST)` · `Theme: Rebuilding the Social Engine` · `Solo · Team Forge-X`
-
-A three-round national competition where a corrupted social-media platform ("The Social Engine") had to be rebuilt end-to-end — first the data, then the meaning, then the live pulse. Everything below is one repo, fully reproducible, every number generated by the pipeline.
-
-`Python` `pandas` `scikit-learn` `TF-IDF` `Mann-Whitney U` `keyless APIs` `RSS · Mastodon · GDELT · Bing` `Jupyter` `SQLite`
-
-```mermaid
+◈ DataVortex
+A three-round national data science competition
+![Repository](https://img.shields.io/badge/Repository-DataVortex-0d1117?style=flat-square&logo=github)
+AARUUSH '26 · SRM Institute of Science and Technology · "Rebuilding
+the Social Engine"
+A three-round pipeline that rebuilt a simulated social platform's data,
+semantic layer, and live signal tracking. The work emphasizes
+reproducibility, explicit data repairs, and honest evaluation.
+Stack: Python · pandas · scikit-learn · TF-IDF · SQLite · Jupyter ·
+Mann--Whitney U · public data sources
+``` mermaid
 flowchart LR
-    R1["ROUND 1<br/>Data Restoration<br/>12,360 → 10,221 rows<br/>27 logged repairs · 21 tests ✓"]
-    R2["ROUND 2<br/>Semantic Layer (NLP)<br/>9,000 labelled texts<br/>macro-F1 0.613 / 0.805 · 14 tests ✓"]
-    R3["ROUND 3<br/>Live Signal Tracking<br/>10,384 self-collected records<br/>21 sweeps · 9 spikes · p=0.0043"]
+    R1["ROUND 1<br/>Data restoration<br/>12,360 → 10,221 rows<br/>27 logged repairs"]
+    R2["ROUND 2<br/>NLP classification<br/>9,000 labelled texts<br/>Macro-F1: 0.613 / 0.805"]
+    R3["ROUND 3<br/>Live signal tracking<br/>10,384 collected records<br/>21 sweeps · 9 spikes"]
 
     R1 --> R2 --> R3
 
-    classDef r1 fill:#0d1117,stroke:#3fb950,color:#c9d1d9;
-    classDef r2 fill:#0d1117,stroke:#a371f7,color:#c9d1d9;
-    classDef r3 fill:#0d1117,stroke:#f78166,color:#c9d1d9;
-    class R1 r1;
-    class R2 r2;
-    class R3 r3;
+    classDef a fill:#0b1220,stroke:#3fb950,color:#e6edf3;
+    classDef b fill:#0b1220,stroke:#a371f7,color:#e6edf3;
+    classDef c fill:#0b1220,stroke:#f78166,color:#e6edf3;
+    class R1 a;
+    class R2 b;
+    class R3 c;
 ```
-
-<details>
-<summary><b>Round 1 — Data Restoration</b></summary>
-
-<br/>
-
-Recovered a corrupted posts + users dataset from a simulated broken platform through an interactive recovery challenge.
-
-- Cleaned 12,360 corrupted rows → 10,221 analysis-ready records with **27 individually justified repairs** (each one logged and reversible — no silent fixes).
-- Built a schema'd SQLite core and answered the analytical question set with 45 SQL queries.
-- The arithmetic closes exactly: `12,360 − 360 − 1,779 = 10,221`. Reproducible via `./run_all.sh` → 21 tests passing.
-
-</details>
-
-<details>
-<summary><b>Round 2 — Semantic Recovery (NLP)</b></summary>
-
-<br/>
-
-Rebuilt the platform's comprehension layer: sentiment and topic classification over 9,000 labelled texts.
-
-- Model bake-off (TF-IDF + linear models, LDA/NMF cross-check) with a strict discipline: **one split, one seed, one touch of the test set**.
-- Sentiment macro-F1 **0.6134**, topic macro-F1 **0.8051** — with error analysis that read the mistakes instead of averaging them away.
-- One-split/one-seed honesty rules, margins reported not celebrated. Reproducible via `./run_round2.sh` → 14 tests passing.
-
-</details>
-
-<details>
-<summary><b>Round 3 — Signal Tracking (the model goes live)</b></summary>
-
-<br/>
-
-The restored model was pushed into a living conversation: collect real public data in real time around an assigned topic, and detect behavioural shifts as they happen.
-
-- **10,384 self-collected records** across 21 sweeps and 5 languages — keyless, ToS-respecting sources only; every HTTP outcome logged.
-- Team-manual X & YouTube datasets imported through an **authenticity gate** (every snowflake ID decoded and timestamp-matched; 100% pass).
-- Applied the Round-2 model unchanged to live data. Detected **9 engagement spikes** and a statistically significant gold-day positivity shift — **0.391 → 0.306, Mann-Whitney p = 0.0043** — a pride/grievance signature predicted before the match from the event's history.
-- Executed real-time notebook (23 cells, 0 errors), 8-section analytical report, one-command reproducibility via `./run_round3.sh`.
-
-</details>
-
-<details>
-<summary><b>Why this project matters to me</b></summary>
-
-<br/>
-
-It is the full arc I care about: **data integrity → applied ML → live intelligent systems**, under competition constraints and honesty rules. No step was faked, no number was hand-written — the report is a printout of what the pipeline produced.
-
-```text
-"The data survived. It understood. Now it watches back."
-                                   — ARCHIVE NODE 07
-```
-
-</details>
-
+Round 1 --- Data restoration - Recovered 12,360 corrupted rows into
+10,221 analysis-ready records. - Logged 27 individually justified,
+reversible repairs instead of silently altering data. - Built a SQLite
+analysis core and answered the analytical question set with SQL. -
+Reproducible pipeline with automated tests.
+Round 2 --- Semantic recovery - Evaluated sentiment and topic
+classification over 9,000 labelled texts. - Compared TF-IDF and linear
+models, with LDA/NMF cross-checks. - Reported sentiment macro-F1 of
+0.6134 and topic macro-F1 of 0.8051. - Used a fixed split and
+seed, with explicit error analysis.
+Round 3 --- Live signal tracking - Collected 10,384 records
+across 21 sweeps and 5 languages. - Logged HTTP outcomes and
+used public sources under their applicable access constraints. - Applied
+the Round 2 model to the collected data without retraining it on the
+target results. - Reported 9 engagement spikes and a gold-day
+positivity shift from 0.391 to 0.306 with Mann--Whitney U, p =
+0.0043.
+Why it matters: data integrity → applied ML → live analysis,
+connected into one reproducible pipeline.
+> "The data survived. It understood. Now it watches back." --- ARCHIVE
+> NODE 07
 ---
-
-### InnerLoop
-
-**AI-Powered Student Productivity & Continuous-Improvement Platform**
-
-A connected system that moves students from knowing their day to measurable improvement — built on structured student context and an AI-ready architecture.
-
-`React` `Vite` `Supabase` `PostgreSQL` `Tailwind CSS`
-
-<details>
-<summary><b>The Improvement Loop</b></summary>
-
-<br/>
-
-```mermaid
+◈ InnerLoop
+Student productivity & continuous improvement
+InnerLoop explores the loop between planning, focus, habits, learning,
+and measurable improvement. It is a separate project from Questbound:
+InnerLoop emphasizes structured planning and analytics, while Questbound
+explores game mechanics.
+Stack: React · Vite · Supabase · PostgreSQL · Tailwind CSS
+``` mermaid
 flowchart LR
-    K["Know Your Day"] --> PL["Plan"]
-    PL --> F["Focus"]
-    F --> H["Build Habits"]
+    K["Know your day"] --> P["Plan"]
+    P --> F["Focus"]
+    F --> H["Build habits"]
     H --> L["Learn"]
     L --> M["Measure"]
-    M --> AD["Adapt"]
-    AD -.-> K
-
-    CTX[("Structured Student Context<br/>timetable · tasks · goals<br/>habits · focus · learning")]
-    CTX --- PL
+    M --> A["Adapt"]
+    A -.-> K
+    CTX[("Structured student context<br/>timetable · tasks · goals<br/>habits · focus · learning")]
+    CTX --- P
     CTX --- M
+    CTX -. planned .-> AI["AI reasoning layer"]
 
-    AI["AI Context & Reasoning Layer<br/>(planned)"]
-    CTX -. planned .-> AI
-
-    classDef built fill:#0d1117,stroke:#3fb950,color:#c9d1d9;
-    classDef planned fill:#0d1117,stroke:#8b949e,color:#8b949e,stroke-dasharray: 5 5;
-    class K,PL,F,H,L,M,AD,CTX built;
+    classDef built fill:#0b1220,stroke:#3fb950,color:#e6edf3;
+    classDef planned fill:#10151d,stroke:#8b949e,color:#8b949e,stroke-dasharray: 5 5;
+    class K,P,F,H,L,M,A,CTX built;
     class AI planned;
 ```
-
-</details>
-
-<details>
-<summary><b>Build Status</b></summary>
-
-<br/>
-
-| Component | Status |
-|---|---|
-| Timetable context | Implemented |
-| Tasks & goals | Implemented |
-| Habits & focus | Implemented |
-| Learning tracking | Implemented |
-| Analytics | Implemented |
-| Adaptive planning foundations | Implemented |
-| Structured, AI-ready data architecture | Implemented |
-| Full AI context & reasoning layer | **Planned** |
-
-</details>
-
-**Connection to Questbound:** both explore adaptive productivity — InnerLoop through structured planning and analytics, Questbound through game mechanics. They are separate projects.
-
+Implemented foundations: timetable context, tasks and goals, habits
+and focus, learning tracking, analytics, adaptive-planning foundations,
+and structured AI-ready data.
+Planned: the full AI context and reasoning layer.
 ---
-
-### Anaya Health Assistant
-
-**Voice AI for Accessible Healthcare Information**
-
-A voice-first conversational assistant focused on healthcare access, Hinglish and Indian-language accessibility, and a strictly non-diagnostic, non-prescriptive design.
-
-`LiveKit Agents` `SIP` `Gemini` `Deepgram` `Murf Falcon` `SQLite`
-
-<details>
-<summary><b>Voice Pipeline</b></summary>
-
-<br/>
-
-```mermaid
+◈ Anaya Health Assistant
+Voice-first healthcare information access
+![Repository](https://img.shields.io/badge/Repository-Anaya-0d1117?style=flat-square&logo=github)
+Anaya explores voice-first healthcare information with a focus on
+Hinglish and Indian-language accessibility. It is designed to be
+non-diagnostic and non-prescriptive.
+Stack: LiveKit Agents · SIP · Gemini · Deepgram · Murf Falcon ·
+SQLite
+``` mermaid
 flowchart LR
-    U["User<br/>voice / call"] --> LK["LiveKit Agents / SIP"]
-    LK --> STT["Deepgram<br/>Speech-to-Text"]
-    STT --> LLM["Gemini<br/>+ safety boundaries"]
-    LLM --> TTS["Murf Falcon<br/>Text-to-Speech"]
+    U["Voice / phone call"] --> LK["LiveKit / SIP"]
+    LK --> STT["Deepgram<br/>Speech to text"]
+    STT --> LLM["Gemini<br/>Safety-bounded response"]
+    LLM --> TTS["Murf Falcon<br/>Text to speech"]
     TTS --> LK
     LK --> U
     LLM <--> DB[("SQLite")]
 
-    classDef n fill:#0d1117,stroke:#58a6ff,color:#c9d1d9;
+    classDef n fill:#0b1220,stroke:#58a6ff,color:#e6edf3;
     class U,LK,STT,LLM,TTS,DB n;
 ```
-
-</details>
-
-<details>
-<summary><b>Design Principles</b></summary>
-
-<br/>
-
-- **Voice-first** — lowers the barrier for users who find text interfaces difficult.
-- **Hinglish / Indian-language accessibility** — designed around how users actually speak.
-- **Non-diagnostic & non-prescriptive** — provides information and guidance, not diagnoses or prescriptions.
-
-</details>
-
+Voice-first interaction to reduce dependence on text-heavy
+interfaces.
+Hinglish-oriented conversational experience.
+Information and guidance rather than diagnosis or prescription.
+Speech-to-text → language model → text-to-speech pipeline.
 ---
-
-### SHIELD-COM
-
-**Embedded AI Speech Processing for Soldier Communication**
-
-`Smart India Hackathon 2026 — our team's entry (college internal round)`
-
-A hardware-software system exploring active noise cancellation and neural speech processing for communication in noisy operational environments.
-
-`ESP32-S3` `ESP-SR` `Embedded Systems` `Speech Processing`
-
-<details>
-<summary><b>System Flow</b></summary>
-
-<br/>
-
-```mermaid
+◈ SHIELD-COM
+Embedded speech processing for noisy environments
+Smart India Hackathon 2026 · Team entry / college internal round
+A hardware-software concept exploring embedded speech processing and
+active-noise-cancellation approaches for communication in noisy
+operational environments.
+Stack: ESP32-S3 · ESP-SR · Embedded systems · Speech processing
+``` mermaid
 flowchart LR
-    MIC["Voice input<br/>noisy environment"] --> MCU["ESP32-S3"]
-    MCU --> SR["ESP-SR<br/>neural speech processing"]
-    SR --> ANC["Active noise cancellation"]
-    ANC --> OUT["Clearer communication output"]
+    MIC["Audio input"] --> MCU["ESP32-S3"]
+    MCU --> SR["ESP-SR processing"]
+    SR --> OUT["Processed communication output"]
 
-    classDef n fill:#0d1117,stroke:#d29922,color:#c9d1d9;
-    class MIC,MCU,SR,ANC,OUT n;
+    classDef n fill:#0b1220,stroke:#d29922,color:#e6edf3;
+    class MIC,MCU,SR,OUT n;
 ```
-
-- Hardware-software integration on the ESP32-S3.
-- On-device speech processing using the ESP-SR framework.
-
-</details>
-
+The project explores the hardware/software boundary and on-device
+speech-processing capabilities. The diagram represents the intended
+system direction, not a claim that every component is
+production-validated.
 ---
-
-### NoLimi
-
-**Personal AI Desktop Assistant**
-
-A Python assistant that combines natural-language interaction with desktop automation.
-
-`Python` `Gemini API` `Speech Recognition` `Text-to-Speech` `Browser Automation`
-
-<details>
-<summary><b>Command Flow</b></summary>
-
-<br/>
-
-```mermaid
+◈ NoLimi
+Personal AI desktop assistant
+A Python assistant combining natural-language interaction with voice
+input, speech output, browser automation, and application launching.
+Stack: Python · Gemini API · Speech recognition · TTS · Browser
+automation
+``` mermaid
 flowchart LR
-    V["Voice command"] --> SR["Speech Recognition"]
-    SR --> G["Gemini API<br/>natural-language understanding"]
-    G --> R{"Action Router"}
-    R --> B["Browser Automation"]
-    R --> A["Application Launching"]
-    R --> S["System Controls"]
-    R --> C["Conversational Reply"]
-    B --> T["Text-to-Speech"]
+    V["Voice command"] --> SR["Speech recognition"]
+    SR --> G["Gemini API"]
+    G --> R{"Action router"}
+    R --> B["Browser automation"]
+    R --> A["Launch application"]
+    R --> C["Conversational reply"]
+    B --> T["Text-to-speech"]
     A --> T
-    S --> T
     C --> T
 
-    classDef n fill:#0d1117,stroke:#3fb950,color:#c9d1d9;
-    class V,SR,G,R,B,A,S,C,T n;
+    classDef n fill:#0b1220,stroke:#3fb950,color:#e6edf3;
+    class V,SR,G,R,B,A,C,T n;
 ```
-
-- **Broader direction:** `AI + Desktop Automation + Cybersecurity` — an ongoing direction, not a completed feature set.
-
-</details>
-
+Exploration direction: AI + desktop automation + cybersecurity. This
+is an ongoing direction, not a claim that every possible automation
+feature is complete.
 ---
+`05` / PROJECT CONSTELLATION
+``` mermaid
+flowchart TB
+    ME(("Kunal Choudhary"))
+    ME --> SEC["Secure backend systems"]
+    ME --> ADP["Adaptive systems"]
+    ME --> VOICE["Voice & speech AI"]
+    ME --> DATA["Data & applied ML"]
+    ME --> HEALTH["Healthcare access"]
+    ME --> AUTO["Automation"]
 
-## 🕹️ THE QUEST — Play My Portfolio
+    SEC --> T["TRAXIS"]
+    SEC --> Q["Questbound"]
+    ADP --> Q
+    ADP --> IL["InnerLoop"]
+    VOICE --> AN["Anaya"]
+    VOICE --> SH["SHIELD-COM"]
+    HEALTH --> FC["FlowCare"]
+    DATA --> DV["DataVortex"]
+    AUTO --> NL["NoLimi"]
 
-*You wake up inside THE SOCIAL ENGINE. Corrupted data glitters on the floor like broken glass.
-Somewhere in the dark, a machine whispers:* **"p = 0.0043…"**
-
-**CHOOSE YOUR PATH:**
-
-| | |
-|---|---|
-| 🗃️ [Follow the data trail →](#room-1-the-data-caves) | 🎙️ [Climb the Voice Tower →](#room-2-the-voice-tower) |
-| 🔐 [Force the Security Vault →](#room-3-the-security-vault) | 🧪 [Enter the Mad Alchemist's Lab →](#room-4-the-alchemists-lab) |
-
-<details>
-<summary>💎 <b>…or search for the GOLDEN RECORD (secret ending)</b></summary>
-
-<br/>
-
-You crawl past the broken terminal into the deepest chamber of the Social Engine. Something enormous is breathing in there.
-
-| | |
-|---|---|
-| ⚔️ [**FACE THE FINAL BOSS →**](#room-5-the-golden-record) | |
-</details>
-
----
-
-#### Room 1: The Data Caves
-
-The tunnel floor is made of 12,360 corrupted rows. Bats with duplicate IDs swoop at you.
-
-> **ROLL FOR INITIATIVE** — you dodge **4 duplicates**, decode the **snowflake runes**, and refuse the tempting shortcut through the Login Wall.
->
-> 🎁 **LOOT DROPPED:** a glowing scroll — `10,384 unique records · 21 sweeps · every HTTP outcome logged`
->
-> → [Examine the scroll (DataVortex)](#datavortex) · [Deeper into the caves →](#room-4-the-alchemists-lab)
-
----
-
-#### Room 2: The Voice Tower
-
-A tower with no text interface — only voices. A guardian blocks the stair: *"Speak, human."*
-
-> You whisper in **Hinglish**. The guardian nods — accessibility check passed.
->
-> 🎁 **LOOT DROPPED:** `STT → LLM → TTS pipeline` + `on-device ESP-SR speech processing`
->
-> → [Meet Anaya](#anaya-health-assistant) · [Inspect SHIELD-COM](#shield-com) · [Climb down →](#room-3-the-security-vault)
-
----
-
-#### Room 3: The Security Vault
-
-A door with 7 locks: JWT, RBAC, RLS, tenant scope, audit log… The doorman asks one question:
-
-> *"Who decides what the client may do?"*
->
-> You answer: **"The server. Always the server."** — all 7 locks open at once.
->
-> 🎁 **LOOT DROPPED:** `multi-tenant platform · integration-tested auth pipeline`
->
-> → [Enter TRAXIS](#traxis) · [Move on →](#room-4-the-alchemists-lab)
-
----
-
-#### Room 4: The Alchemist's Lab
-
-An RPG kingdom runs inside a browser. An Oracle murmurs probabilities. A Naive-Bayes dice rolls itself.
-
-> The Alchemist gestures at a trophy case: **GRAND FINALE — IIT BHUBANESWAR**.
->
-> 🎁 **LOOT DROPPED:** `server-authoritative game engine · 40-check e2e suite · 24+ ADRs`
->
-> → [Enter Questbound](#questbound) · [⭐ Quick-time event: star the repo](https://github.com/kunalchwdry/Questbound)
-
----
-
-#### Room 5: The Golden Record
-
-*Hidden room. If you are reading this, you actually clicked — respect. 🥷*
-
-The final boss wakes:
-
-```text
-  ☠ FINAL BOSS — MISSION 2030
-  HP: ████████████████████ 100%   [AI INFRASTRUCTURE]
+    classDef root fill:#1f6feb,stroke:#58a6ff,color:#fff;
+    classDef domain fill:#161b22,stroke:#8b949e,color:#e6edf3;
+    classDef project fill:#0b1220,stroke:#58a6ff,color:#58a6ff;
+    class ME root;
+    class SEC,ADP,VOICE,DATA,HEALTH,AUTO domain;
+    class T,Q,IL,AN,SH,FC,DV,NL project;
 ```
-
-You attack with **"foundations first"**, counter with **"validate before you claim"**, and finish it with the forbidden spell nobody expected from a Lv.2:
-
-```text
-  CRITICAL HIT — Mann-Whitney U, p = 0.0043
-  "The data survived. It understood. Now it watches back."
-```
-
-**🏆 ACHIEVEMENTS UNLOCKED**
-
-```text
-  ├─ 🏆 Grand Finalist — Tech Zephyr 4.0, IIT Bhubaneswar
-  ├─ 📊 The Significant One — gold-day shift, p = 0.0043
-  ├─ 🗃️ Snowflake Whisperer — 100% authenticity gate pass
-  ├─ 🔁 The 3-Round Saga — Data Vortex, all rounds shipped
-  └─ 🥷 Secret Seeker — you found this room
-```
-
-| | |
-|---|---|
-| 🔁 [R — RESPAWN AT START](#-the-quest--play-my-portfolio) | ⚔️ [Join the party (Connect)](#connect) |
-
 ---
-
-## 🎲 Random Encounter
-
-*This page is alive — every refresh spawns something new.*
-
-| 🃏 Dev joke roll | 📜 Scroll of wisdom |
-|---|---|
-| ![a random dev joke](https://readme-jokes.vercel.app/api?theme=tokyonight) | ![a random dev quote](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight) |
-
+Project                                                          Domain                  Core technologies
 ---
-
-## Tech Stack
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=python,fastapi,postgres,supabase,sqlite,react,nextjs,ts,vite,tailwind,git,github&theme=dark" alt="Tech Stack" />
-
-</div>
-
-<br/>
-
-| Layer | Technologies |
-|---|---|
-| **AI / LLM** | `Gemini API` · `Multi-Provider LLM Routing` · `Naive Bayes` · `NLP` |
-| **Voice & Speech** | `LiveKit Agents` · `SIP` · `Deepgram` · `Murf Falcon` · `Speech Recognition` · `Text-to-Speech` · `ESP-SR` |
-| **Backend** | `Python` · `FastAPI` · `REST APIs` · `JWT` · `RBAC` · `Audit Logging` · `Integration Testing` |
-| **Data** | `PostgreSQL` · `Supabase` · `Row Level Security` · `Drizzle ORM` · `SQLite` · `Transactional Systems` |
-| **Data Science** | `pandas` · `scikit-learn` · `TF-IDF` · `statistical testing` · `Jupyter` |
-| **Frontend** | `React` · `Next.js` · `TypeScript` · `Vite` · `Tailwind CSS` |
-| **Embedded** | `ESP32-S3` |
-| **Tools** | `Git` · `GitHub` · `Browser Automation` |
-
+FlowCare              Healthcare discovery &  Next.js, TypeScript,
+coordination            Supabase, PostgreSQL,
+RLS
+TRAXIS                  Polar logistics & asset React, Vite, FastAPI,
+management              PostgreSQL, JWT, RBAC
+Questbound          Adaptive productivity   Next.js, PostgreSQL,
+RPG                     Supabase, Drizzle, LLM
+routing
+InnerLoop                                                        Student productivity    React, Vite, Supabase,
+PostgreSQL
+Anaya   Voice healthcare        LiveKit, Gemini,
+information             Deepgram, Murf
+SHIELD-COM                                                       Embedded speech         ESP32-S3, ESP-SR
+processing
+NoLimi                                                           Desktop assistant &     Python, Gemini API,
+automation              speech tools
+DataVortex    Data science & live     pandas, scikit-learn,
+analysis                TF-IDF, SQLite
 ---
-
-## Competition Track
-
-| Competition | What I shipped |
-|---|---|
-| **Tech Zephyr 4.0 — IIT Bhubaneswar** | 🏆 **Grand Finale Finalist** — Questbound (offline finale: pitch + live demo + Q&A) |
-| **AARUUSH '26 — Data Vortex** | 3-round "Social Engine" saga — restoration → NLP → live signal tracking ([repo](https://github.com/kunalchwdry/data-vortex-2026)) |
-
+`06` / TECH ARSENAL
+::: {align="center"}
+`<img src="https://skillicons.dev/icons?i=python,fastapi,postgres,supabase,sqlite,react,nextjs,ts,vite,tailwind,git,github,linux&theme=dark" alt="Technology icons"/>`{=html}
+:::
 ---
-
-## GitHub Activity
-
-<div align="center">
-
-<img src="https://streak-stats.demolab.com?user=kunalchwdry&theme=tokyonight&hide_border=true&background=0D1117&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF" alt="GitHub Streak" />
-
-<br/><br/>
-
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=kunalchwdry&theme=tokyonight" alt="Repos per Language" height="150" />
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=kunalchwdry&theme=tokyonight" alt="Most Commit Language" height="150" />
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=kunalchwdry&theme=tokyonight" alt="Stats" height="150" />
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=kunalchwdry&theme=tokyonight" alt="Productive Time" height="150" />
-
-</div>
-
-```text
-┌──(kunal㉿github)-[~/stats]
-└─$ ./fetch --lifetime
-   grand finals reached ........ 1       → Tech Zephyr 4.0, IIT Bhubaneswar
-   national rounds shipped ..... 3       → Data Vortex, all of them
-   records self-collected ...... 10,384  → 21 sweeps · 5 languages
-   significant results ......... 1       → p = 0.0043
-   ADRs written ................ 24+     → Questbound
-   secrets hidden in profile ... 1       → did you find it??
-```
-
+Layer                               Tools & concepts
 ---
-
+AI / LLM                        Gemini API, multi-provider routing,
+NLP, Naive Bayes, LLM applications
+Machine learning                pandas, scikit-learn, TF-IDF,
+evaluation, statistical testing,
+Jupyter
+Voice & speech                  LiveKit Agents, SIP, Deepgram, Murf
+Falcon, speech recognition, TTS,
+ESP-SR
+Backend                         Python, FastAPI, Next.js route
+handlers, REST APIs, validation,
+integration testing
+Data                            PostgreSQL, Supabase, SQLite, RLS,
+Drizzle ORM, transactional
+workflows
+Security                        JWT verification, RBAC, tenant
+scoping, audit logging, server-side
+authorization
+Frontend                        React, Next.js, TypeScript, Vite,
+Tailwind CSS
+Embedded                        ESP32-S3, on-device
+speech-processing exploration
+Workflow                        Git, GitHub, automation,
+reproducible pipelines
 ---
-
-## What I Like Building
-
-| | |
-|---|---|
-| **AI-powered applications** | LLM assistants, voice agents, AI companions |
-| **Secure backend platforms** | Multi-tenant APIs with RBAC, RLS, and audit trails |
-| **Adaptive systems** | Products that measure behavior and adapt over time |
-| **Automation tools** | Voice-driven desktop and browser automation |
-| **Embedded AI** | On-device speech processing on microcontrollers |
-| **Real-world operational software** | Logistics, healthcare access, student workflows |
-| **Trustworthy product systems** | Provenance, freshness, authorization, audit trails, honest uncertainty |
-
+`07` / FIELD REPORTS
 ---
-
-## Engineering Interests
-
-`Artificial Intelligence` · `Machine Learning` · `Generative AI` · `LLMs & Agents` · `Voice AI` · `Backend Systems` · `Data Systems` · `Computer Vision` · `Cybersecurity` · `Embedded AI` · `Developer Tools` · `Intelligent Automation`
-
+Event / track                       Work
 ---
-
-## Current Learning
-
+Tech Zephyr 4.0 --- IIT           🏆 Questbound selected as a Grand
+Bhubaneswar                       Finale Finalist; offline pitch,
+demo, and technical Q&A
+AARUUSH '26 --- DataVortex      Three-round pipeline: restoration →
+NLP → live signal tracking
+Smart India Hackathon 2026      Team work across TRAXIS and
+SHIELD-COM problem tracks
+`08` / CURRENT LEARNING TREE
+```{=html}
 <details open>
-<summary><b>What I'm going deeper on</b></summary>
-
-<br/>
-
-| Track | Focus |
-|---|---|
-| **ML Foundations** | Core machine learning concepts and model training |
-| **Deep Learning** | PyTorch and neural-network workflows |
-| **LLM Systems** | RAG, agentic architectures, evaluation |
-| **Backend Engineering** | API design, testing, reliability |
-| **System Design** | Data modeling, authorization, scalable architecture |
-
-```text
-building → learning → experimenting → shipping → repeat
 ```
-
-</details>
-
+```{=html}
+<summary>
+```
+`<b>`{=html}Active learning tracks`</b>`{=html}
+```{=html}
+</summary>
+```
+`<br/>`{=html}
 ---
+Track                               Current focus
+---
+ML foundations                  Core concepts, data preparation,
+training and evaluation
+Deep learning                   PyTorch, neural networks, practical
+model workflows
+LLM systems                     RAG, agentic architectures,
+evaluation, failure analysis
+Backend engineering             API design, authorization, testing,
+reliability
+System design                   Data modeling, tenant boundaries,
+scalable architecture
+```{=html}
+</details>
+```
+---
+`09` / GITHUB TELEMETRY
+::: {align="center"}
+`<img src="https://streak-stats.demolab.com?user=kunalchwdry&theme=tokyonight&hide_border=true&background=0D1117&ring=58A6FF&fire=7C3AED&currStreakLabel=58A6FF" alt="GitHub streak"/>`{=html}
+`<br/>`{=html}`<br/>`{=html}
+`<img height="165" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=kunalchwdry&theme=tokyonight" alt="Languages across repositories"/>`{=html}
+`<img height="165" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=kunalchwdry&theme=tokyonight" alt="GitHub statistics"/>`{=html}
+`<img height="165" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=kunalchwdry&theme=tokyonight&utcOffset=5.5" alt="Productive time"/>`{=html}
+:::
+``` text
+┌──(kunal㉿github)-[~/telemetry]
+└─$ ./mission-report
 
-## Mission 2030
+  grand finale finalist ......... Tech Zephyr 4.0 · IIT Bhubaneswar
+  competition rounds shipped .... 3 · DataVortex
+  records collected ............. 10,384
+  collection sweeps ............. 21
+  languages in collected data ... 5
+  reported statistical result ... p = 0.0043
+  architecture decision records . 24+
+```
+`<sub>`{=html}Stats cards are generated by third-party services and may
+occasionally be unavailable or delayed. Project metrics above describe
+the stated project runs, not live GitHub counters.`</sub>`{=html}
+---
+`10` / THE SIDE QUEST
+You wake up inside THE SOCIAL ENGINE. Corrupted rows shimmer across the
+floor. A terminal flickers in the dark:
+``` text
+> signal detected
+> records recovered: 10,384
+> anomaly probability: p = 0.0043
+> new quest unlocked: MISSION 2030
+```
+Choose your route:
+---
+Portal                              Mission
+---
+🗃️ Enter the Data                  Follow the evidence. Repair the
+Caves                 records. Track the signal.
+🎙️ Climb the Voice                 Explore voice-first AI and speech
+Tower     pipelines.
+🔐 Enter the Security              Cross the tenant boundary without
+Vault                     breaking authorization.
+🧪 Visit the                       Build systems where deterministic
+Alchemist             rules meet adaptive AI.
+🏥 Open FlowCare       Trace a claim back to its source.
+```{=html}
+<details>
+```
+```{=html}
+<summary>
+```
+💎 `<b>`{=html}Secret room: The Golden Record`</b>`{=html}
+```{=html}
+</summary>
+```
+`<br/>`{=html}
+``` text
+☠ FINAL BOSS — MISSION 2030
+TARGET: AI INFRASTRUCTURE
+STATUS: ACTIVE
 
-```mermaid
+WEAPONS:
+  [x] foundations first
+  [x] server decides
+  [x] validate before you claim
+  [x] measure, then improve
+
+CRITICAL HIT:
+  Data integrity → applied intelligence → useful systems
+```
+Achievement unlocked: keep building things that survive contact with
+reality.
+```{=html}
+</details>
+```
+---
+`11` / MISSION 2030
+``` mermaid
 flowchart LR
     A["AI Engineering"] --> B["Intelligent Systems"]
     B --> C["AI Products"]
     C --> D["AI Infrastructure"]
 
-    classDef n fill:#0d1117,stroke:#58a6ff,color:#58a6ff;
+    classDef n fill:#0b1220,stroke:#58a6ff,color:#e6edf3,stroke-width:1.5px;
     class A,B,C,D n;
 ```
-
-> Build deep technical foundations, ship increasingly complex AI systems, and grow into an engineer capable of designing intelligent systems end-to-end.
-
+The goal is to build deep technical foundations, ship increasingly
+complex AI systems, and become an engineer who can design intelligent
+products end-to-end --- from data and infrastructure to the user
+experience.
+Not a claim that the mission is complete. A direction worth earning.
 ---
-
-## 🔓 Unlockables — level up this profile
-
-```text
-  PROFILE SETUP PROGRESS   [■■■□□□□□□□]  3/10
-  ☑ profile README          ☑ trophy cards        ☑ the quest (secret room)
-  ☐ contribution snake      ☐ 3D skyline          ☐ wakatime     ☐ discord live
-```
-
-<details>
-<summary>🐍 <b>Contribution Snake</b> — <i>2 min setup · auto-refreshes daily</i></summary>
-
-<br/>
-
-**Preview (demo):**
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Platane/snk/output/snake-dark.svg" />
-  <img src="https://raw.githubusercontent.com/Platane/snk/output/snake.svg" width="100%" />
-</picture>
-
-**Setup —** in the profile repo (`kunalchwdry/kunalchwdry`) create `.github/workflows/snake.yml`:
-
-```yaml
-name: Generate Snake
-on:
-  schedule: [{cron: "0 0 * * *"}]
-  workflow_dispatch:
-jobs:
-  generate:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: kunalchwdry
-          outputs: |
-            dist/snake.svg
-            dist/snake-dark.svg?palette=github-dark
-      - uses: crazy-max/ghaction-github-pages@v4
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
-Run it once (Actions → Generate Snake → Run), then paste this where the snake should live:
-
-```markdown
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kunalchwdry/kunalchwdry/output/snake-dark.svg" />
-  <img src="https://raw.githubusercontent.com/kunalchwdry/kunalchwdry/output/snake.svg" width="100%" />
-</picture>
-```
-
-</details>
-
-<details>
-<summary>🌌 <b>GitHub Skyline</b> — <i>2 min · a 3D city of my 2026 commits</i></summary>
-
-<br/>
-
-**Setup —** go to [skyline.github.com](https://skyline.github.com/) → enter `kunalchwdry` → export the GIF → commit it to the profile repo (e.g. `assets/skyline-2026.gif`) → embed:
-
-```markdown
-<img src="assets/skyline-2026.gif" width="100%" alt="My 2026 commits as a 3D city" />
-```
-
-</details>
-
-<details>
-<summary>⏱️ <b>WakaTime</b> — <i>10 min · live "what I'm coding" stats</i></summary>
-
-<br/>
-
-**Setup —** sign up at [wakatime.com](https://wakatime.com) → install the editor plugin → code for a few days → make the dashboard public → embed (⚠️ use your **self-hosted** instance from the unlock below — the shared public one is dead):
-
-```markdown
-<img src="https://github-readme-stats-MY-APP.vercel.app/api/wakatime?username=kunalchwdry&theme=tokyonight&hide_border=true&bg_color=0D1117" width="48%" />
-```
-
-</details>
-
-<details>
-<summary>📊 <b>Live Stats Cards — self-hosted</b> <i>(10 min · the famous stats/trophy/graph cards, on my own free Vercel)</i></summary>
-
-<br/>
-
-The famous stat cards broke **for everyone** — the shared public instance is `DEPLOYMENT_PAUSED` (the whole internet hammers it). The permanent fix is running **my own free copy**:
-
-1. Fork [ryo-ma/github-readme-stats](https://github.com/ryo-ma/github-readme-stats)
-2. Create a fine-grained **PAT** (Settings → Developer settings): All repositories → **Public repositories, read-only** — nothing more
-3. [vercel.com](https://vercel.com) → sign in **with GitHub** (free, no card) → Add New Project → import the fork → Environment Variables → `PAT_1` = the token → Deploy
-4. Use my own instance's URLs in this README:
-
-```markdown
-<img height="170" src="https://github-readme-stats-MY-APP.vercel.app/api?username=kunalchwdry&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117" />
-```
-
-Same fork-and-deploy trick works for [the trophy card](https://github.com/ryo-ma/github-profile-trophy) and [the activity graph](https://github.com/Ashutosh00710/github-readme-activity-graph). Self-hosted = never rate-limited again.
-
-</details>
-
-<details>
-<summary>💬 <b>Discord Live Status</b> — <i>10 min · a live card that shows when I'm online, gaming, or building</i></summary>
-
-<br/>
-
-**Preview (live demo card — this tech, on my profile):**
-
-<img src="https://lanyard.cnrad.dev/api/94490510688792576" width="380" alt="Lanyard Discord status card demo" />
-
-**Setup —** the card needs my numeric Discord ID (usernames aren't public to APIs):
-
-1. Discord → User Settings → Advanced → enable **Developer Mode**
-2. Right-click my own name anywhere → **Copy User ID**
-3. Join the [Lanyard Discord server](https://discord.gg/lanyard) — this is what makes the status readable by the card (leave anytime after)
-4. Paste this into the Connect section, replacing `MY_DISCORD_ID`:
-
-```markdown
-<img src="https://lanyard.cnrad.dev/api/MY_DISCORD_ID?theme=dark" width="380" alt="Discord status" />
-```
-
-Done — from then on the profile shows **live Discord presence**: online / in a game / building something. No server, no Vercel, nothing to maintain.
-
-</details>
-
----
-
-<details>
-<summary>🗝️ <b>CHEAT CODES</b> <i>(type these into the terminal of life)</i></summary>
-
-<br/>
-
-```text
-  > whoami            → ai_engineer_in_progress --year=2 --base=India
-  > sudo make boss    → MISSION 2030 difficulty: lowered (temporarily)
-  > git blame life    → all bugs are mine, all wins are the team's
-  > up, up, down...   → unlocks nothing. ship real code instead.
-```
-
-</details>
-
----
-
-## Connect
-
-<div align="center">
-
-[![GitHub](https://img.shields.io/badge/GitHub-kunalchwdry-0d1117?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kunalchwdry)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kunal_Choudhary-0d1117?style=for-the-badge&logo=linkedin&logoColor=0A66C2)](https://www.linkedin.com/in/kunal-choudhary-918270425/)
-
-<sub>Open to collaborating on AI systems, backend platforms, and real-world intelligent software.</sub>
-
-<br/><br/>
-
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=400&size=14&pause=2000&color=8B949E&center=true&vCenter=true&width=560&lines=The+data+survived.+It+understood.+Now+it+watches+back.;Foundations+first.+Then+intelligence.;Ship.+Measure.+Adapt.+Repeat." alt="Footer typing SVG" />
-
-<br/>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&height=120&color=gradient&customColorList=6,11,15&section=footer&animation=fadeIn" width="100%" />
-
-</div>
+`12` / CONNECT
+::: {align="center"}
+![GitHub](https://img.shields.io/badge/GitHub-Explore%20my%20work-0d1117?style=for-the-badge&logo=github)
+![LinkedIn](https://img.shields.io/badge/LinkedIn-Let's%20connect-0d1117?style=for-the-badge&logo=linkedin&logoColor=0A66C2)
+Open to collaborating on AI systems, backend platforms, data
+pipelines, and real-world intelligent software.
+`<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=14&pause=1800&color=8B949E&center=true&vCenter=true&width=700&lines=Foundations+first.+Then+intelligence.;Build.+Measure.+Break.+Rebuild.;The+data+survived.+It+understood.+Now+it+watches+back." alt="Closing tagline"/>`{=html}
+`<br/>`{=html}
+`<img src="https://capsule-render.vercel.app/api?type=waving&height=130&color=0:7c3aed,35:123a66,70:0d1b3d,100:050816&section=footer&animation=fadeIn" width="100%" alt="Footer wave"/>`{=html}
+:::
