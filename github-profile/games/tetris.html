@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Stack Builder Tetris — Kunal's Arcade</title>
+<style>
+:root{--bg:#0d1117;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--red:#f85149;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+header{width:min(920px,94vw);margin:18px auto 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.wrap{width:min(920px,94vw);display:grid;grid-template-columns:320px 1fr;gap:14px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#121a28,#0f1724);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:14px}
+#board{width:100%;background:#0a1220;border:1px solid #1e2e46;border-radius:12px;display:block}
+.stat{display:flex;justify-content:space-between;padding:8px 10px;border-radius:10px;background:#0d1524;border:1px solid var(--line);margin-bottom:8px;font-size:13px}
+.stat b{font-size:16px}
+.btn{appearance:none;border:1px solid var(--line);background:#0f1a2b;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px;width:100%;margin-top:6px}
+.btn.primary{background:linear-gradient(180deg,#1b2a44,#122038);border-color:#2a4a7a}
+.hint{color:var(--muted);font-size:11px;line-height:1.5;margin-top:8px}
+.next{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:#0a1220;padding:8px;border-radius:10px;border:1px solid #1e2e46;margin-top:8px}
+.next div{aspect-ratio:1;border-radius:4px}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — <span style="color:var(--purple)">STACK BUILDER</span></div>
+<a class="badge" href="./index.html">← All Games</a>
+</header>
+<div class="wrap">
+<div class="card">
+<canvas id="board" width="300" height="600"></canvas>
+</div>
+<div class="card">
+<div class="stat"><span>Score</span><b id="score">0</b></div>
+<div class="stat"><span>Lines</span><b id="lines">0</b></div>
+<div class="stat"><span>Level</span><b id="level">1</b></div>
+<div class="stat"><span>Best</span><b id="best">0</b></div>
+<button class="btn primary" id="startBtn">▶ Start / Pause (Space)</button>
+<button class="btn" id="resetBtn">↻ Reset</button>
+<div style="margin-top:10px"><strong style="font-size:12px">Next:</strong><div class="next" id="next"></div></div>
+<div class="hint">
+<strong>Controls:</strong> ← → move, ↓ soft drop, ↑ rotate, Space pause, C hold<br><br>
+<strong>Modes:</strong> Classic Tetris. Stack cleanly. Each 10 lines = level up (faster).<br>
+Tech colors: PY=green, TS=blue, PG=purple, RE=cyan, etc.
+</div>
+</div>
+</div>
+<script>
+const COLS=10,ROWS=20,CELL=30;
+const canvas=document.getElementById('board'),ctx=canvas.getContext('2d');
+const scoreEl=document.getElementById('score'),linesEl=document.getElementById('lines'),levelEl=document.getElementById('level'),bestEl=document.getElementById('best'),nextEl=document.getElementById('next');
+let board,current,next,hold,score,lines,level,dropTimer,playing,best=parseInt(localStorage.getItem('stack-best')||'0');bestEl.textContent=best;
+
+const SHAPES=[
+ {name:'I',color:'#39d2ff',mat:[[1,1,1,1]]},
+ {name:'O',color:'#ffd166',mat:[[1,1],[1,1]]},
+ {name:'T',color:'#a371f7',mat:[[0,1,0],[1,1,1]]},
+ {name:'S',color:'#3fb950',mat:[[0,1,1],[1,1,0]]},
+ {name:'Z',color:'#f85149',mat:[[1,1,0],[0,1,1]]},
+ {name:'J',color:'#58a6ff',mat:[[1,0,0],[1,1,1]]},
+ {name:'L',color:'#f78166',mat:[[0,0,1],[1,1,1]]},
+];
+
+function emptyBoard(){return Array(ROWS).fill(0).map(()=>Array(COLS).fill(null));}
+function randomPiece(){let s=SHAPES[Math.floor(Math.random()*SHAPES.length)];return {name:s.name,color:s.color,mat:s.mat.map(r=>[...r]),x:Math.floor(COLS/2)-1,y:0};}
+function rotateMat(m){let r=m[0].length,c=m.length;let nm=Array(r).fill(0).map(()=>Array(c).fill(0));for(let y=0;y<c;y++)for(let x=0;x<r;x++)nm[x][c-1-y]=m[y][x];return nm;}
+function collides(b,p,dx=0,dy=0,mat=null){
+ let m=mat||p.mat;
+ for(let y=0;y<m.length;y++)for(let x=0;x<m[y].length;x++)if(m[y][x]){
+  let nx=p.x+x+dx,ny=p.y+y+dy;
+  if(nx<0||nx>=COLS||ny>=ROWS||(ny>=0&&b[ny][nx]))return true;
+ }
+ return false;
+}
+function merge(){
+ for(let y=0;y<current.mat.length;y++)for(let x=0;x<current.mat[y].length;x++)if(current.mat[y][x]){
+  let by=current.y+y,bx=current.x+x;
+  if(by>=0)board[by][bx]=current.color;
+ }
+}
+function clearLines(){
+ let cleared=0;
+ for(let y=ROWS-1;y>=0;y--){
+  if(board[y].every(c=>c!==null)){board.splice(y,1);board.unshift(Array(COLS).fill(null));cleared++;y++;}
+ }
+ if(cleared>0){lines+=cleared;score+=cleared*100*level + (cleared===4?400:0);level=Math.floor(lines/10)+1;if(score>best){best=score;bestEl.textContent=best;localStorage.setItem('stack-best',best);}}
+}
+function draw(){
+ ctx.fillStyle='#0a1220';ctx.fillRect(0,0,canvas.width,canvas.height);
+ // grid
+ ctx.strokeStyle='#14233a';ctx.lineWidth=0.5;
+ for(let i=0;i<=COLS;i++){ctx.beginPath();ctx.moveTo(i*CELL,0);ctx.lineTo(i*CELL,ROWS*CELL);ctx.stroke();}
+ for(let i=0;i<=ROWS;i++){ctx.beginPath();ctx.moveTo(0,i*CELL);ctx.lineTo(COLS*CELL,i*CELL);ctx.stroke();}
+ // board
+ for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++)if(board[y][x]){ctx.fillStyle=board[y][x];ctx.fillRect(x*CELL+1,y*CELL+1,CELL-2,CELL-2);ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(x*CELL+1,y*CELL+1,CELL-2,4);}
+ // current
+ if(current){for(let y=0;y<current.mat.length;y++)for(let x=0;x<current.mat[y].length;x++)if(current.mat[y][x]){let px=current.x+x,py=current.y+y;if(py>=0){ctx.fillStyle=current.color;ctx.fillRect(px*CELL+1,py*CELL+1,CELL-2,CELL-2);}}}
+ scoreEl.textContent=score;linesEl.textContent=lines;levelEl.textContent=level;
+ // next preview
+ nextEl.innerHTML='';
+ for(let y=0;y<4;y++)for(let x=0;x<4;x++){let d=document.createElement('div');let inNext=false;if(next&&y<next.mat.length&&x<next.mat[y].length&&next.mat[y][x]){d.style.background=next.color;inNext=true;}else d.style.background='#121a28';d.style.border=inNext?'none':'1px solid #1e2e46';nextEl.appendChild(d);}
+}
+function step(){
+ if(!playing)return;
+ if(!collides(board,current,0,1)){current.y++;}else{merge();clearLines();current=next;next=randomPiece();if(collides(board,current)){playing=false;draw();alert(`Stack Overload! Score ${score}`);return;}}
+ draw();
+}
+function init(){
+ board=emptyBoard();score=0;lines=0;level=1;current=randomPiece();next=randomPiece();playing=false;draw();
+}
+let interval=null;
+function toggle(){
+ playing=!playing;
+ if(playing){clearInterval(interval);interval=setInterval(step,Math.max(80,600-level*50));}else clearInterval(interval);
+ document.getElementById('startBtn').textContent=playing?'❚❚ Pause (Space)':'▶ Start / Pause (Space)';
+ draw();
+}
+document.addEventListener('keydown',e=>{
+ if(!current)return;
+ if(e.key==='ArrowLeft'&&!collides(board,current,-1,0)){current.x--;draw();}
+ if(e.key==='ArrowRight'&&!collides(board,current,1,0)){current.x++;draw();}
+ if(e.key==='ArrowDown'&&!collides(board,current,0,1)){current.y++;score+=1;draw();}
+ if(e.key==='ArrowUp'){let rm=rotateMat(current.mat);if(!collides(board,current,0,0,rm)){current.mat=rm;draw();}}
+ if(e.key===' '){e.preventDefault();toggle();}
+ if(e.key.toLowerCase()==='c'&&hold!==undefined){/* hold not implemented */ }
+});
+document.getElementById('startBtn').onclick=toggle;
+document.getElementById('resetBtn').onclick=()=>{clearInterval(interval);init();};
+init();
+</script>
+</body>
+</html>
