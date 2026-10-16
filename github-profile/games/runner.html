@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>XP Runner — Kunal's Arcade</title>
+<style>
+:root{--bg:#0d1117;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--red:#f85149;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+header{width:min(920px,94vw);margin:18px auto 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.wrap{width:min(920px,94vw);display:grid;grid-template-columns:1fr 280px;gap:14px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#121a28,#0f1724);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:14px}
+#game{width:100%;height:400px;background:#0a1220;border:1px solid #1e2e46;border-radius:12px;display:block}
+.stat{display:flex;justify-content:space-between;padding:8px 10px;border-radius:10px;background:#0d1524;border:1px solid var(--line);margin-bottom:8px;font-size:13px}
+.stat b{font-size:18px}
+.btn{appearance:none;border:1px solid var(--line);background:#0f1a2b;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px;width:100%;margin-top:6px}
+.btn.primary{background:linear-gradient(180deg,#1b2a44,#122038);border-color:#2a4a7a}
+.select{width:100%;background:#0d1524;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px;font-family:inherit;font-size:12px}
+.hint{color:var(--muted);font-size:11px;line-height:1.5;margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — <span style="color:var(--gold)">XP RUNNER</span></div>
+<a class="badge" href="./index.html">← All Games</a>
+</header>
+<div class="wrap">
+<div class="card">
+<canvas id="game" width="600" height="400"></canvas>
+</div>
+<div class="card">
+<div class="stat"><span>Distance</span><b id="dist">0m</b></div>
+<div class="stat"><span>XP</span><b id="xp">0</b></div>
+<div class="stat"><span>Best</span><b id="best">0m</b></div>
+<select class="select" id="modeSel">
+<option value="normal">Normal — Balanced</option>
+<option value="easy">Easy — Slower, more XP</option>
+<option value="hard">Hard — Fast, less XP</option>
+<option value="insane">Insane — Very fast</option>
+<option value="double">Double Jump — 2 jumps</option>
+</select>
+<button class="btn primary" id="jumpBtn">⬆ Jump (Space / Tap)</button>
+<button class="btn" id="startBtn">▶ Start Run</button>
+<div class="hint">
+<strong>How:</strong> Space/Tap/↑ to jump. Avoid red bugs, collect gold XP. Ground = safe.<br><br>
+<strong>Modes:</strong> Easy slower, Hard faster, Insane very fast, Double Jump allows 2 jumps in air.<br>
+Best distance saved.
+</div>
+</div>
+</div>
+<script>
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+const distEl=document.getElementById('dist'),xpEl=document.getElementById('xp'),bestEl=document.getElementById('best'),modeSel=document.getElementById('modeSel');
+let player,obstacles,xpOrbs,dist,xp,frame,playing,speed,best,jumps=0,maxJumps=1;
+best=parseInt(localStorage.getItem('runner-best')||'0');bestEl.textContent=best+'m';
+
+function init(){
+ player={x:80,y:300,vy:0,w:28,h:28,ground:320};
+ obstacles=[];xpOrbs=[];dist=0;xp=0;frame=0;playing=false;jumps=0;
+ maxJumps=modeSel.value==='double'?2:1;
+ speed= modeSel.value==='easy'?3: modeSel.value==='hard'?5: modeSel.value==='insane'?7:4;
+ distEl.textContent='0m';xpEl.textContent='0';
+ draw();
+}
+function jump(){
+ if(!playing){playing=true;requestAnimationFrame(loop);}
+ if(jumps<maxJumps){player.vy=-12;jumps++;}
+}
+function loop(){
+ if(!playing)return;
+ frame++;
+ dist+=speed*0.1;distEl.textContent=Math.floor(dist)+'m';
+ player.vy+=0.7;player.y+=player.vy;
+ if(player.y>=player.ground){player.y=player.ground;player.vy=0;jumps=0;}
+ if(frame% (modeSel.value==='easy'?90:60)===0){
+  // obstacle
+  if(Math.random()<0.7){
+   obstacles.push({x:canvas.width,y:player.ground,w:22,h:30+Math.random()*20});
+  }
+  if(Math.random()<0.5){
+   xpOrbs.push({x:canvas.width,y:player.ground-40-Math.random()*80,w:16,h:16,collected:false});
+  }
+ }
+ obstacles.forEach(o=>o.x-=speed);
+ xpOrbs.forEach(o=>o.x-=speed);
+ obstacles=obstacles.filter(o=>o.x+o.w>0);
+ xpOrbs=xpOrbs.filter(o=>!o.collected&&o.x+o.w>0);
+ // collisions
+ for(let o of obstacles){
+  if(player.x+player.w>o.x&&player.x<o.x+o.w&&player.y+player.h>o.y&&player.y<o.y+o.h){gameOver();return;}
+ }
+ for(let o of xpOrbs){
+  if(!o.collected&&player.x+player.w>o.x&&player.x<o.x+o.w&&player.y+player.h>o.y&&player.y<o.y+o.h){o.collected=true;xp+=10;xpEl.textContent=xp;}
+ }
+ draw();
+ requestAnimationFrame(loop);
+}
+function draw(){
+ ctx.fillStyle='#0a1220';ctx.fillRect(0,0,canvas.width,canvas.height);
+ // ground
+ ctx.fillStyle='#121a28';ctx.fillRect(0,player.ground+player.h,canvas.width,canvas.height-player.ground-player.h);
+ ctx.strokeStyle='#1e2e46';ctx.beginPath();ctx.moveTo(0,player.ground+player.h);ctx.lineTo(canvas.width,player.ground+player.h);ctx.stroke();
+ // stars parallax
+ ctx.fillStyle='#1e2e46';
+ for(let i=0;i<15;i++){let x=(i*97+frame*speed*0.2)%canvas.width;ctx.fillRect(x,(i*53)%(player.ground-20),2,2);}
+ // obstacles
+ ctx.fillStyle='#f85149';
+ obstacles.forEach(o=>{ctx.fillRect(o.x,o.y,o.w,o.h);ctx.fillStyle='#3a1a1a';ctx.fillRect(o.x,o.y+o.h-6,o.w,6);ctx.fillStyle='#f85149';});
+ // xp orbs
+ xpOrbs.forEach(o=>{if(!o.collected){ctx.fillStyle='#ffd166';ctx.beginPath();ctx.arc(o.x+o.w/2,o.y+o.h/2,8,0,Math.PI*2);ctx.fill();ctx.fillStyle='#0d1117';ctx.font='bold 10px monospace';ctx.textAlign='center';ctx.fillText('XP',o.x+o.w/2,o.y+o.h/2+3);}});
+ // player
+ ctx.fillStyle='#e6edf3';ctx.fillRect(player.x,player.y,player.w,player.h);
+ ctx.fillStyle='#0d1117';ctx.fillRect(player.x+18,player.y+6,4,4);
+ if(!playing){
+  ctx.fillStyle='rgba(13,17,23,.7)';ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='#e6edf3';ctx.font='800 20px monospace';ctx.textAlign='center';ctx.fillText('XP RUNNER',canvas.width/2,180);
+  ctx.fillStyle='#8b949e';ctx.font='12px monospace';ctx.fillText('Space / Tap to jump • Collect XP',canvas.width/2,205);
+ }
+}
+function gameOver(){
+ playing=false;
+ if(Math.floor(dist)>best){best=Math.floor(dist);bestEl.textContent=best+'m';localStorage.setItem('runner-best',best);}
+ ctx.fillStyle='rgba(13,17,23,.8)';ctx.fillRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle='#ffd166';ctx.font='800 22px monospace';ctx.textAlign='center';ctx.fillText('CRASH!',canvas.width/2,180);
+ ctx.fillStyle='#e6edf3';ctx.font='13px monospace';ctx.fillText(`Distance ${Math.floor(dist)}m • XP ${xp} • Best ${best}m`,canvas.width/2,210);
+}
+document.addEventListener('keydown',e=>{if(e.code==='Space'||e.key==='ArrowUp'){e.preventDefault();jump();}});
+canvas.addEventListener('click',jump);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();jump();});
+document.getElementById('jumpBtn').onclick=jump;
+document.getElementById('startBtn').onclick=()=>{if(!playing){init();playing=true;requestAnimationFrame(loop);}};
+modeSel.onchange=init;
+init();
+</script>
+</body>
+</html>
