@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Memory Matrix — Kunal's Arcade</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+a{color:var(--blue);text-decoration:none}
+header{width:min(980px,94vw);margin:18px auto 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.wrap{width:min(980px,94vw);display:grid;grid-template-columns:1fr 300px;gap:14px}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#121a28,#0f1724);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.board{padding:12px;display:grid;gap:8px}
+.tile{aspect-ratio:1;position:relative;cursor:pointer;perspective:700px}
+.inner{position:absolute;inset:0;transition:transform .45s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+.tile.flipped .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;border:1px solid var(--line);backface-visibility:hidden}
+.front{background:#0a1220;color:var(--muted);font-size:20px}
+.back{transform:rotateY(180deg);background:linear-gradient(180deg,#1b2a44,#122038);color:var(--text);font-size:13px;letter-spacing:.04em;flex-direction:column;gap:3px}
+.back small{font-size:9px;color:var(--muted);font-weight:600}
+.tile.matched .back{border-color:var(--green);box-shadow:0 0 0 1px rgba(63,185,80,.3),0 0 20px rgba(63,185,80,.25)}
+.side{padding:14px;display:flex;flex-direction:column;gap:10px}
+.stat{display:flex;justify-content:space-between;align-items:center;padding:9px 10px;border-radius:10px;background:#0d1524;border:1px solid var(--line);font-size:13px}
+.stat b{font-size:18px}
+.btn{appearance:none;border:1px solid var(--line);background:#0f1a2b;color:var(--text);padding:9px 12px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px}
+.btn.primary{background:linear-gradient(180deg,#1b2a44,#122038);border-color:#2a4a7a}
+.btn:hover{transform:translateY(-1px);border-color:var(--blue)}
+.select{width:100%;background:#0d1524;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px;font-family:inherit;font-size:12px}
+.hint{color:var(--muted);font-size:11px;line-height:1.5}
+.win{position:fixed;inset:0;background:rgba(13,17,23,.88);display:none;align-items:center;justify-content:center;z-index:20}
+.win.show{display:flex}
+.winbox{background:#121a28;border:1px solid var(--line);border-radius:16px;padding:20px;max-width:380px;width:92vw;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.tag{font-size:10px;padding:3px 7px;border-radius:999px;border:1px solid var(--line);background:#0d1524;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — <span style="color:var(--purple)">MEMORY MATRIX</span> <span class="tag" id="modeTag">4×4</span></div>
+<a class="badge" href="./index.html">← All Games</a>
+</header>
+<div class="wrap">
+<div class="card board" id="board"></div>
+<div class="card side">
+<div class="stat"><span>Moves</span><b id="moves">0</b></div>
+<div class="stat"><span>Time</span><b id="time">00:00</b></div>
+<div class="stat"><span>Best</span><b id="best">—</b></div>
+<select class="select" id="modeSel">
+<option value="easy">Easy — 4×4 (8 pairs)</option>
+<option value="normal" selected>Normal — 4×5 (10 pairs)</option>
+<option value="hard">Hard — 6×6 (18 pairs)</option>
+<option value="blitz">Blitz — 4×4 • 60s timed</option>
+<option value="extreme">Extreme — 6×6 • 90s + moves limit</option>
+</select>
+<button class="btn primary" id="restart">↻ New Grid</button>
+<div class="hint">
+<strong style="color:var(--text)">Modes:</strong><br>
+• <b>Easy:</b> 4×4 classic<br>
+• <b>Normal:</b> 4×5 with 2 extra stacks<br>
+• <b>Hard:</b> 6×6 brain burner<br>
+• <b>Blitz:</b> 60s countdown<br>
+• <b>Extreme:</b> 90s + 40 moves max<br><br>
+Match PY, TS, PG, RE, FA, SB, DO, LX, K8, AI and more.
+</div>
+</div>
+</div>
+<div class="win" id="win">
+<div class="winbox">
+<div style="font-size:32px">🧠</div>
+<h2 style="margin:8px 0 6px">Matrix Cleared</h2>
+<div id="winText" style="color:var(--muted);font-size:13px"></div>
+<br>
+<button class="btn primary" onclick="init()">Play Again</button>
+<a class="btn" href="./index.html" style="display:inline-block;margin-left:8px">Arcade</a>
+</div>
+</div>
+<script>
+const TECH=[
+ {k:'PY',label:'Python',c:'#3fb950'},{k:'TS',label:'TypeScript',c:'#58a6ff'},
+ {k:'PG',label:'Postgres',c:'#a371f7'},{k:'RE',label:'React',c:'#39d2ff'},
+ {k:'FA',label:'FastAPI',c:'#3fb950'},{k:'SB',label:'Supabase',c:'#58a6ff'},
+ {k:'DO',label:'Docker',c:'#39d2ff'},{k:'LX',label:'Linux',c:'#ffd166'},
+ {k:'K8',label:'K8s',c:'#58a6ff'},{k:'AI',label:'AI',c:'#a371f7'},
+ {k:'DB',label:'DB',c:'#3fb950'},{k:'NX',label:'Next',c:'#39d2ff'},
+ {k:'TW',label:'TW',c:'#a371f7'},{k:'GIT',label:'Git',c:'#f78166'},
+ {k:'JS',label:'JS',c:'#ffd166'},{k:'GO',label:'Go',c:'#39d2ff'},
+ {k:'RS',label:'Rust',c:'#f85149'},{k:'PY2',label:'Py',c:'#3fb950'}
+];
+let first=null,lock=false,moves=0,timer=null,sec=0,mode='normal',timeLimit=0,moveLimit=0;
+const board=document.getElementById('board'),movesEl=document.getElementById('moves'),timeEl=document.getElementById('time'),bestEl=document.getElementById('best'),win=document.getElementById('win'),winText=document.getElementById('winText'),modeSel=document.getElementById('modeSel'),modeTag=document.getElementById('modeTag');
+
+function getConfig(){
+ const m=modeSel.value;
+ if(m==='easy')return{cols:4,rows:4,pairs:8,time:0,moves:0,label:'4×4'};
+ if(m==='normal')return{cols:5,rows:4,pairs:10,time:0,moves:0,label:'4×5'};
+ if(m==='hard')return{cols:6,rows:6,pairs:18,time:0,moves:0,label:'6×6'};
+ if(m==='blitz')return{cols:4,rows:4,pairs:8,time:60,moves:0,label:'BLITZ 60S'};
+ if(m==='extreme')return{cols:6,rows:6,pairs:18,time:90,moves:40,label:'EXTREME'};
+ return {cols:4,rows:4,pairs:8,time:0,moves:0,label:'4×4'};
+}
+function fmt(s){const m=String(Math.floor(s/60)).padStart(2,'0'),ss=String(s%60).padStart(2,'0');return `${m}:${ss}`}
+
+function init(){
+ board.innerHTML='';first=null;lock=false;moves=0;sec=0;movesEl.textContent='0';timeEl.textContent='00:00';win.classList.remove('show');
+ clearInterval(timer);
+ mode=modeSel.value;
+ const cfg=getConfig();
+ modeTag.textContent=cfg.label;
+ board.style.gridTemplateColumns=`repeat(${cfg.cols},1fr)`;
+ timeLimit=cfg.time;moveLimit=cfg.moves;
+ const needed=TECH.slice(0,cfg.pairs);
+ const deck=[...needed,...needed].map((t,i)=>({...t,uid:i})).sort(()=>Math.random()-0.5);
+ deck.forEach(card=>{
+  const tile=document.createElement('div');tile.className='tile';tile.dataset.k=card.k;
+  tile.innerHTML=`<div class="inner"><div class="face front">?</div><div class="face back" style="border-color:${card.c}"><span style="color:${card.c}">${card.k}</span><small>${card.label}</small></div></div>`;
+  tile.addEventListener('click',()=>flip(tile));
+  board.appendChild(tile);
+ });
+ const best=localStorage.getItem(`memory-best-${mode}`);if(best)bestEl.textContent=best;
+ timer=setInterval(()=>{
+  sec++;
+  if(timeLimit>0){
+   const remain=timeLimit-sec;
+   timeEl.textContent=remain>=0?fmt(remain):'00:00';
+   if(remain<=0){clearInterval(timer);fail('Time up!');}
+  }else timeEl.textContent=fmt(sec);
+ },1000);
+}
+
+function flip(tile){
+ if(lock||tile.classList.contains('flipped')||tile.classList.contains('matched'))return;
+ if(moveLimit>0&&moves>=moveLimit)return;
+ tile.classList.add('flipped');
+ if(!first){first=tile;return;}
+ moves++;movesEl.textContent=moves;
+ if(moveLimit>0&&moves>moveLimit){fail('Move limit!');return;}
+ if(first.dataset.k===tile.dataset.k){
+  first.classList.add('matched');tile.classList.add('matched');first=null;
+  if(document.querySelectorAll('.tile.matched').length===document.querySelectorAll('.tile').length)setTimeout(victory,400);
+ }else{
+  lock=true;setTimeout(()=>{
+   first.classList.remove('flipped');tile.classList.remove('flipped');first=null;lock=false;
+  },650);
+ }
+}
+function victory(){
+ clearInterval(timer);
+ const cur=sec;const bestKey=`memory-best-${mode}`;
+ const bestSec=parseInt(localStorage.getItem(bestKey+'-sec')||'9999');
+ if(cur<bestSec){localStorage.setItem(bestKey+'-sec',cur);localStorage.setItem(bestKey,`${fmt(cur)} • ${moves} moves`);bestEl.textContent=`${fmt(cur)} • ${moves} moves`;}
+ winText.textContent=`Cleared ${getConfig().label} in ${fmt(sec)} with ${moves} moves.`;
+ win.classList.add('show');
+}
+function fail(reason){
+ win.querySelector('h2').textContent=reason;
+ winText.textContent=`Tried ${getConfig().label} — ${moves} moves in ${fmt(sec)}.`;
+ win.classList.add('show');
+ win.querySelector('h2').textContent=reason;
+ // reset title next time
+ setTimeout(()=>{win.querySelector('h2').textContent='Matrix Cleared'},2000);
+}
+document.getElementById('restart').onclick=init;
+modeSel.onchange=init;
+init();
+</script>
+</body>
+</html>
