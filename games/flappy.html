@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Flappy Code — Kunal's Arcade</title>
+<style>
+:root{--bg:#0d1117;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+header{width:min(920px,94vw);margin:18px auto 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.wrap{width:min(920px,94vw);display:grid;grid-template-columns:1fr 280px;gap:14px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#121a28,#0f1724);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:14px}
+#game{width:100%;background:#0a1220;border:1px solid #1e2e46;border-radius:12px;display:block}
+.stat{display:flex;justify-content:space-between;padding:8px 10px;border-radius:10px;background:#0d1524;border:1px solid var(--line);margin-bottom:8px;font-size:13px}
+.stat b{font-size:18px}
+.btn{appearance:none;border:1px solid var(--line);background:#0f1a2b;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px;width:100%;margin-top:6px}
+.btn.primary{background:linear-gradient(180deg,#1b2a44,#122038);border-color:#2a4a7a}
+.hint{color:var(--muted);font-size:11px;line-height:1.5;margin-top:8px}
+.select{width:100%;background:#0d1524;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px;font-family:inherit;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — <span style="color:var(--cyan)">FLAPPY CODE</span></div>
+<a class="badge" href="./index.html">← All Games</a>
+</header>
+<div class="wrap">
+<div class="card">
+<canvas id="game" width="400" height="600"></canvas>
+</div>
+<div class="card">
+<div class="stat"><span>Score</span><b id="score">0</b></div>
+<div class="stat"><span>Best</span><b id="best">0</b></div>
+<div class="stat"><span>Mode</span><b id="modeLabel">Normal</b></div>
+<select class="select" id="modeSel">
+<option value="normal">Normal — Balanced</option>
+<option value="easy">Easy — Wider gaps, slower</option>
+<option value="hard">Hard — Narrow gaps, fast</option>
+<option value="insane">Insane — Tiny gaps</option>
+<option value="reverse">Reverse — Gravity flip on score</option>
+</select>
+<button class="btn primary" id="startBtn">▶ Flap (Space / Tap)</button>
+<button class="btn" id="resetBtn">↻ Reset</button>
+<div class="hint">
+<strong>How:</strong> Space/Tap/↑ to flap. Avoid brackets <code>{ } [ ]</code>. Pass through gap to score.<br><br>
+<strong>Modes:</strong> Easy wider gaps, Hard narrow, Insane tiny, Reverse flips gravity every 5 points.<br>
+Best saved locally.
+</div>
+</div>
+</div>
+<script>
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+const scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),modeLabel=document.getElementById('modeLabel'),modeSel=document.getElementById('modeSel');
+let bird,pipes,score,best,frame,playing,gravity,mode,pipeGap,pipeSpeed,reverse=false;
+best=parseInt(localStorage.getItem('flappy-best')||'0');bestEl.textContent=best;
+
+function init(){
+ const cfg=getCfg();
+ bird={x:80,y:300,vy:0,r:14};
+ pipes=[];score=0;frame=0;playing=false;gravity=cfg.gravity;pipeGap=cfg.gap;pipeSpeed=cfg.speed;reverse=false;
+ scoreEl.textContent=score;modeLabel.textContent=cfg.label;
+ draw();
+}
+function getCfg(){
+ const m=modeSel.value;
+ if(m==='easy')return{gap:180,speed:2,gravity:0.45,label:'Easy'};
+ if(m==='hard')return{gap:130,speed:3,gravity:0.5,label:'Hard'};
+ if(m==='insane')return{gap:100,speed:4,gravity:0.55,label:'Insane'};
+ if(m==='reverse')return{gap:150,speed:2.5,gravity:0.5,label:'Reverse'};
+ return{gap:150,speed:2.5,gravity:0.5,label:'Normal'};
+}
+function flap(){if(!playing){playing=true;requestAnimationFrame(loop);} bird.vy= reverse? 6 : -8;}
+
+function loop(){
+ if(!playing)return;
+ frame++;
+ // bird physics
+ bird.vy+= reverse? -gravity : gravity;
+ bird.y+=bird.vy;
+ // pipes
+ if(frame%90===0){
+  let h=Math.random()*(canvas.height-pipeGap-100)+50;
+  pipes.push({x:canvas.width,y:0,h:h,passed:false},{x:canvas.width,y:h+pipeGap,h:canvas.height-h-pipeGap,passed:false});
+ }
+ pipes.forEach(p=>p.x-=pipeSpeed);
+ pipes=pipes.filter(p=>p.x+60>-20);
+ // collisions
+ for(let p of pipes){
+  if(bird.x+bird.r>p.x&&bird.x-bird.r<p.x+60&&bird.y+bird.r>p.y&&bird.y-bird.r<p.y+p.h){gameOver();return;}
+ }
+ if(bird.y+bird.r>canvas.height||bird.y-bird.r<0){gameOver();return;}
+ // score
+ pipes.forEach(p=>{
+  if(!p.passed&&p.x+60<bird.x){p.passed=true;if(p.y===0){score++;scoreEl.textContent=score;if(score>best){best=score;bestEl.textContent=best;localStorage.setItem('flappy-best',best);}if(modeSel.value==='reverse'&&score%5===0){reverse=!reverse;}}}}
+ );
+ draw();
+ requestAnimationFrame(loop);
+}
+function draw(){
+ ctx.fillStyle='#0a1220';ctx.fillRect(0,0,canvas.width,canvas.height);
+ // stars
+ ctx.fillStyle='#1e2e46';
+ for(let i=0;i<20;i++){let x=(i*67+frame*0.5)%canvas.width,y=(i*97)%canvas.height;ctx.fillRect(x,y,2,2);}
+ // pipes
+ ctx.fillStyle='#1a2a44';
+ pipes.forEach(p=>{
+  ctx.fillStyle=p.y===0?'#1a2a44':'#1a2740';
+  ctx.fillRect(p.x,p.y,60,p.h);
+  ctx.fillStyle='#233349';ctx.fillRect(p.x-2,p.y+p.h-10,64,10);
+  ctx.fillStyle='#58a6ff';ctx.font='bold 12px monospace';ctx.fillText(p.y===0?'{ }':'[ ]',p.x+10,p.y===0?p.h-15:p.y+20);
+ });
+ // bird
+ ctx.fillStyle=reverse?'#a371f7':'#e6edf3';
+ ctx.beginPath();ctx.arc(bird.x,bird.y,bird.r,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#0d1117';ctx.beginPath();ctx.arc(bird.x+5,bird.y-2,3,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle=reverse?'#39d2ff':'#ffd166';ctx.beginPath();ctx.moveTo(bird.x+bird.r,bird.y);ctx.lineTo(bird.x+bird.r+10,bird.y-4);ctx.lineTo(bird.x+bird.r+10,bird.y+4);ctx.fill();
+ if(!playing){
+  ctx.fillStyle='rgba(13,17,23,.7)';ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='#e6edf3';ctx.font='800 20px monospace';ctx.textAlign='center';ctx.fillText('FLAPPY CODE',canvas.width/2,260);
+  ctx.fillStyle='#8b949e';ctx.font='12px monospace';ctx.fillText('Press Space / Tap to flap',canvas.width/2,285);
+  ctx.fillText(`Mode: ${modeSel.value}`,canvas.width/2,305);
+ }
+}
+function gameOver(){
+ playing=false;
+ ctx.fillStyle='rgba(13,17,23,.8)';ctx.fillRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle='#ffd166';ctx.font='800 22px monospace';ctx.textAlign='center';ctx.fillText('CRASH!',canvas.width/2,280);
+ ctx.fillStyle='#e6edf3';ctx.font='13px monospace';ctx.fillText(`Score ${score} • Best ${best}`,canvas.width/2,305);
+}
+document.addEventListener('keydown',e=>{if(e.code==='Space'||e.key==='ArrowUp'){e.preventDefault();flap();}});
+canvas.addEventListener('click',flap);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();flap();});
+document.getElementById('startBtn').onclick=flap;
+document.getElementById('resetBtn').onclick=init;
+modeSel.onchange=init;
+init();
+</script>
+</body>
+</html>
