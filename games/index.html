@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Arcade — Kunal Choudhary — 12 Games</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--red:#f85149;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;min-height:100vh}
+a{color:inherit;text-decoration:none}
+header{width:min(1100px,94vw);margin:20px auto 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.brand{font-weight:900;letter-spacing:.04em}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.hero{width:min(1100px,94vw);margin:0 auto 14px;padding:16px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#121a28,#0f1724);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.hero h1{margin:0 0 6px;font-size:22px}
+.hero p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.grid{width:min(1100px,94vw);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1020px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#121a28,#0f1724);overflow:hidden;transition:.18s;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 16px 40px rgba(0,0,0,.4),0 0 0 1px rgba(88,166,255,.15)}
+.thumb{height:120px;background:#0a1220;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--line);font-size:44px}
+.thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(88,166,255,.08),transparent);animation:shine 2.8s infinite}
+@keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.body{padding:12px}
+.body h2{margin:0 0 6px;font-size:15px}
+.body p{margin:0 0 8px;color:var(--muted);font-size:11px;line-height:1.5;min-height:32px}
+.meta{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:3px 7px;border-radius:999px;border:1px solid var(--line);background:#0d1524;color:var(--muted)}
+.btn{display:inline-block;margin-top:8px;padding:7px 10px;border-radius:10px;background:linear-gradient(180deg,#1b2a44,#122038);border:1px solid #2a4a7a;font-weight:800;font-size:12px}
+.footer{width:min(1100px,94vw);margin:18px auto;color:var(--muted);font-size:12px;text-align:center;line-height:1.6}
+.section{width:min(1100px,94vw);margin:18px auto 8px;font-weight:800;font-size:14px;letter-spacing:.04em;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — 12 GAMES ULTIMATE</div>
+<a class="badge" href="../README.md">← Profile README</a>
+</header>
+<div class="hero">
+<h1>🎮 Ultimate Arcade — 12 playable games + modes</h1>
+<p>No installs, no trackers, fully offline. Original games built for this profile. Scores saved locally. Enable GitHub Pages on your profile repo to play at <code>kunalchwdry.github.io/kunalchwdry/games/</code>. All 4 original games now have <b>4 difficulty levels + 4 gameplay modes</b> each.</p>
+</div>
+
+<div class="section">⭐ CORE 4 — NOW WITH MODES</div>
+<div class="grid">
+<a class="card" href="./snake.html"><div class="thumb">🐍</div><div class="body"><h2>Neon Snake</h2><p>Classic, No Walls wrap, Obstacles, Portal teleport. Easy→Insane speeds + power-up P.</p><div class="meta"><span class="tag">4 modes</span><span class="tag">4 diffs</span><span class="tag">Power-up</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./memory.html"><div class="thumb">🧠</div><div class="body"><h2>Memory Matrix</h2><p>4×4 to 6×6, Blitz 60s, Extreme moves limit. Match tech stack.</p><div class="meta"><span class="tag">5 modes</span><span class="tag">6×6</span><span class="tag">Timed</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./quest.html"><div class="thumb">⚔️</div><div class="body"><h2>Questbound Clicker</h2><p>Normal, Hardcore, Speedrun 25, Boss Rush every 5, Idle. Prestige ×1.5.</p><div class="meta"><span class="tag">5 modes</span><span class="tag">Boss</span><span class="tag">Prestige</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./hacker.html"><div class="thumb">🔓</div><div class="body"><h2>Neon Breach</h2><p>3-6 chars, Timed 60s, Mastermind no repeats. Hint system + streak.</p><div class="meta"><span class="tag">6 modes</span><span class="tag">3-6 chars</span><span class="tag">Streak</span></div><div class="btn">▶ Play</div></div></a>
+</div>
+
+<div class="section">🕹️ ARCADE CLASSICS</div>
+<div class="grid">
+<a class="card" href="./2048.html"><div class="thumb">🔢</div><div class="body"><h2>Tech 2048</h2><p>Merge tech stacks: PY→TS→PG→RE→...→2048. Undo, best saved.</p><div class="meta"><span class="tag">Arrows/WASD</span><span class="tag">Undo</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./tetris.html"><div class="thumb">🧱</div><div class="body"><h2>Stack Builder</h2><p>Tetris — stack cleanly, 10 lines = level up. Next preview.</p><div class="meta"><span class="tag">Rotate</span><span class="tag">Levels</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./minesweeper.html"><div class="thumb">💣</div><div class="body"><h2>Code Mines</h2><p>Minesweeper — 9×9 to 20×20, 10-80 mines. Flag bugs.</p><div class="meta"><span class="tag">4 sizes</span><span class="tag">Flag</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./flappy.html"><div class="thumb">🐦</div><div class="body"><h2>Flappy Code</h2><p>Flap through { } [ ] gaps. Easy→Insane + Reverse gravity flip.</p><div class="meta"><span class="tag">5 modes</span><span class="tag">Reverse</span></div><div class="btn">▶ Play</div></div></a>
+</div>
+
+<div class="section">💻 CODING GAMES + RPG</div>
+<div class="grid">
+<a class="card" href="./bug.html"><div class="thumb">🐛</div><div class="body"><h2>Bug Squasher</h2><p>Squash green bugs, avoid red features. Normal/Hard/Insane/Zen.</p><div class="meta"><span class="tag">Accuracy</span><span class="tag">Zen</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./typing.html"><div class="thumb">⌨️</div><div class="body"><h2>Typing Blitz</h2><p>Type code snippets: JS, Python, SQL. WPM + accuracy, 60s.</p><div class="meta"><span class="tag">5 modes</span><span class="tag">WPM</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./dungeon.html"><div class="thumb">🏰</div><div class="body"><h2>Dungeon Crawler</h2><p>Questbound dungeon — floors, HP, gold, XP. Rogue permadeath.</p><div class="meta"><span class="tag">4 modes</span><span class="tag">12×12</span></div><div class="btn">▶ Play</div></div></a>
+<a class="card" href="./runner.html"><div class="thumb">🏃</div><div class="body"><h2>XP Runner</h2><p>Endless runner — jump over bugs, collect XP. Double jump mode.</p><div class="meta"><span class="tag">5 modes</span><span class="tag">Double Jump</span></div><div class="btn">▶ Play</div></div></a>
+</div>
+
+<div class="footer">
+Built for <strong>Kunal Choudhary</strong> — AI engineering · backend · data · Mission 2030<br>
+12 original games, client-side only, no external APIs. After uploading, enable Pages in repo Settings → Pages → Deploy from main branch / root.<br>
+Total: 22 animated GIF previews + 1 snake SVG + 12 games.
+</div>
+</body>
+</html>
