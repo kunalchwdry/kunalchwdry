@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Questbound Dungeon — Kunal's Arcade</title>
+<style>
+:root{--bg:#0d1117;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--red:#f85149;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+header{width:min(920px,94vw);margin:18px auto 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.wrap{width:min(920px,94vw);display:grid;grid-template-columns:1fr 300px;gap:14px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#121a28,#0f1724);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:14px}
+#map{width:100%;aspect-ratio:1;background:#0a1220;border:1px solid #1e2e46;border-radius:12px;display:grid;gap:3px;padding:8px}
+.tile{border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;transition:.12s}
+.tile.wall{background:#121a28;border:1px solid #1e2e46;color:transparent}
+.tile.floor{background:#0d1524;border:1px solid #1a2a44;color:#1a2a44}
+.tile.player{background:radial-gradient(circle at 30% 30%,#1a2a44,#122038);border:2px solid var(--cyan);color:var(--cyan);box-shadow:0 0 12px rgba(57,210,255,.4)}
+.tile.enemy{background:#2a1a1a;border:1px solid var(--red);color:var(--red)}
+.tile.treasure{background:#2a2a1a;border:1px solid var(--gold);color:var(--gold)}
+.tile.exit{background:#1a2a1a;border:1px solid var(--green);color:var(--green)}
+.stat{display:flex;justify-content:space-between;padding:8px 10px;border-radius:10px;background:#0d1524;border:1px solid var(--line);margin-bottom:8px;font-size:13px}
+.stat b{font-size:16px}
+.btn{appearance:none;border:1px solid var(--line);background:#0f1a2b;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px;width:100%;margin-top:6px}
+.btn.primary{background:linear-gradient(180deg,#1b2a44,#122038);border-color:#2a4a7a}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.controls .btn{margin:0}
+.hint{color:var(--muted);font-size:11px;line-height:1.5;margin-top:8px}
+.select{width:100%;background:#0d1524;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px;font-family:inherit;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — <span style="color:var(--gold)">DUNGEON CRAWLER</span></div>
+<a class="badge" href="./index.html">← All Games</a>
+</header>
+<div class="wrap">
+<div class="card">
+<div id="map"></div>
+</div>
+<div class="card">
+<div class="stat"><span>Level</span><b id="lvl">1</b></div>
+<div class="stat"><span>HP</span><b id="hp">100</b></div>
+<div class="stat"><span>Gold</span><b id="gold">0</b></div>
+<div class="stat"><span>XP</span><b id="xp">0</b></div>
+<div class="stat"><span>Best Floor</span><b id="best">1</b></div>
+<select class="select" id="modeSel">
+<option value="normal">Normal — Balanced</option>
+<option value="hard">Hard — More enemies, less HP</option>
+<option value="rogue">Rogue — Permadeath, random</option>
+<option value="explorer">Explorer — Bigger map, more treasure</option>
+</select>
+<button class="btn primary" id="newBtn">↻ New Dungeon</button>
+<div class="controls">
+<div></div><button class="btn" data-dir="up">↑</button><div></div>
+<button class="btn" data-dir="left">←</button><button class="btn" data-dir="down">↓</button><button class="btn" data-dir="right">→</button>
+</div>
+<div class="hint">
+<strong>How:</strong> Arrows/WASD to move. Collect 💰 treasure, avoid/fight 👾 enemies (lose HP, gain XP). Reach 🚪 exit to next floor.<br><br>
+<strong>Modes:</strong> Normal balanced, Hard more enemies, Rogue permadeath random layout, Explorer 12×12 bigger map.<br>
+HP 0 = game over. XP levels up HP.
+</div>
+</div>
+</div>
+<script>
+const mapEl=document.getElementById('map'),lvlEl=document.getElementById('lvl'),hpEl=document.getElementById('hp'),goldEl=document.getElementById('gold'),xpEl=document.getElementById('xp'),bestEl=document.getElementById('best'),modeSel=document.getElementById('modeSel');
+let size=9,board=[],player={x:1,y:1},hp=100,gold=0,xp=0,lvl=1,best=1;
+best=parseInt(localStorage.getItem('dungeon-best')||'1');bestEl.textContent=best;
+
+function genBoard(){
+ const mode=modeSel.value;
+ size=mode==='explorer'?12:9;
+ board=Array(size).fill(0).map(()=>Array(size).fill(1)); // 1 wall, 0 floor
+ // simple random walk carve
+ let x=1,y=1;board[y][x]=0;
+ for(let i=0;i<size*size*2;i++){
+  let dir=[[0,1],[1,0],[0,-1],[-1,0]][Math.floor(Math.random()*4)];
+  let nx=x+dir[0],ny=y+dir[1];
+  if(nx>0&&nx<size-1&&ny>0&&ny<size-1){x=nx;y=ny;board[y][x]=0;if(Math.random()<0.5){board[y+dir[1]]?.[x+dir[0]]=0;}}
+ }
+ // ensure borders wall
+ for(let i=0;i<size;i++){board[0][i]=1;board[size-1][i]=1;board[i][0]=1;board[i][size-1]=1;}
+ player={x:1,y:1};board[1][1]=0;
+ // place exit
+ let ex=size-2,ey=size-2;board[ey][ex]=2; // 2 exit
+ // place enemies and treasure
+ let enemyCount= mode==='hard'?12: mode==='rogue'?10: mode==='explorer'?15:8;
+ let treasureCount= mode==='explorer'?12:8;
+ for(let i=0;i<enemyCount;i++){
+  let rx,ry;
+  do{rx=Math.floor(Math.random()*(size-2))+1;ry=Math.floor(Math.random()*(size-2))+1;}while(board[ry][rx]!==0||(rx===1&&ry===1));
+  board[ry][rx]=3; // enemy
+ }
+ for(let i=0;i<treasureCount;i++){
+  let rx,ry;
+  do{rx=Math.floor(Math.random()*(size-2))+1;ry=Math.floor(Math.random()*(size-2))+1;}while(board[ry][rx]!==0);
+  board[ry][rx]=4; // treasure
+ }
+ render();
+}
+function render(){
+ mapEl.innerHTML='';mapEl.style.gridTemplateColumns=`repeat(${size},1fr)`;
+ for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+  const d=document.createElement('div');d.className='tile';
+  if(x===player.x&&y===player.y){d.classList.add('player');d.textContent='⚔️';}
+  else{
+   let v=board[y][x];
+   if(v===1){d.classList.add('wall');}
+   else if(v===0){d.classList.add('floor');}
+   else if(v===2){d.classList.add('exit');d.textContent='🚪';}
+   else if(v===3){d.classList.add('enemy');d.textContent='👾';}
+   else if(v===4){d.classList.add('treasure');d.textContent='💰';}
+  }
+  mapEl.appendChild(d);
+ }
+ lvlEl.textContent=lvl;hpEl.textContent=hp;goldEl.textContent=gold;xpEl.textContent=xp;
+ if(hp<=0){setTimeout(()=>{alert(`Game Over! Reached floor ${lvl}, Gold ${gold}`);if(lvl>best){best=lvl;localStorage.setItem('dungeon-best',best);bestEl.textContent=best;}},100);}
+}
+function move(dx,dy){
+ if(hp<=0)return;
+ let nx=player.x+dx,ny=player.y+dy;
+ if(nx<0||nx>=size||ny<0||ny>=size)return;
+ let v=board[ny][nx];
+ if(v===1)return; // wall
+ if(v===3){ // enemy
+  let dmg= modeSel.value==='hard'?25:15;
+  hp-=dmg;xp+=10;board[ny][nx]=0;
+  if(xp>=lvl*30){lvl++;hp=Math.min(100+ (lvl-1)*10, 150);xp=0;}
+ }else if(v===4){ // treasure
+  gold+= modeSel.value==='explorer'?15:10;xp+=5;board[ny][nx]=0;
+ }else if(v===2){ // exit
+  lvl++;gold+=20;xp+=20;
+  if(lvl>best){best=lvl;localStorage.setItem('dungeon-best',best);bestEl.textContent=best;}
+  genBoard();return;
+ }
+ player.x=nx;player.y=ny;
+ render();
+}
+document.addEventListener('keydown',e=>{
+ if(e.key==='ArrowUp'||e.key.toLowerCase()==='w')move(0,-1);
+ if(e.key==='ArrowDown'||e.key.toLowerCase()==='s')move(0,1);
+ if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')move(-1,0);
+ if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')move(1,0);
+});
+document.querySelectorAll('[data-dir]').forEach(b=>b.onclick=()=>{
+ let d=b.dataset.dir;
+ if(d==='up')move(0,-1);if(d==='down')move(0,1);if(d==='left')move(-1,0);if(d==='right')move(1,0);
+});
+document.getElementById('newBtn').onclick=()=>{hp=100;gold=0;xp=0;lvl=1;genBoard();};
+modeSel.onchange=()=>{hp=100;gold=0;xp=0;lvl=1;genBoard();};
+genBoard();
+</script>
+</body>
+</html>

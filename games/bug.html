@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Bug Squasher — Kunal's Arcade</title>
+<style>
+:root{--bg:#0d1117;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--red:#f85149;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+header{width:min(920px,94vw);margin:18px auto 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.wrap{width:min(920px,94vw);display:grid;grid-template-columns:1fr 280px;gap:14px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#121a28,#0f1724);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:14px}
+#arena{width:100%;height:520px;background:#0a1220;border:1px solid #1e2e46;border-radius:12px;position:relative;overflow:hidden;cursor:crosshair}
+.bug{position:absolute;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;cursor:pointer;user-select:none;transition:transform .08s}
+.bug:active{transform:scale(.9)}
+.bug.good{background:radial-gradient(circle at 30% 30%,#2a4a2a,#1a2a1a);border:2px solid var(--green);color:var(--green);box-shadow:0 0 15px rgba(63,185,80,.4)}
+.bug.bad{background:radial-gradient(circle at 30% 30%,#4a2a2a,#2a1a1a);border:2px solid var(--red);color:var(--red);box-shadow:0 0 15px rgba(248,81,73,.4)}
+.stat{display:flex;justify-content:space-between;padding:8px 10px;border-radius:10px;background:#0d1524;border:1px solid var(--line);margin-bottom:8px;font-size:13px}
+.stat b{font-size:18px}
+.btn{appearance:none;border:1px solid var(--line);background:#0f1a2b;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px;width:100%;margin-top:6px}
+.btn.primary{background:linear-gradient(180deg,#1b2a44,#122038);border-color:#2a4a7a}
+.select{width:100%;background:#0d1524;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px;font-family:inherit;font-size:12px}
+.hint{color:var(--muted);font-size:11px;line-height:1.5;margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — <span style="color:var(--green)">BUG SQUASHER</span></div>
+<a class="badge" href="./index.html">← All Games</a>
+</header>
+<div class="wrap">
+<div class="card">
+<div id="arena"></div>
+</div>
+<div class="card">
+<div class="stat"><span>Score</span><b id="score">0</b></div>
+<div class="stat"><span>Time</span><b id="time">30s</b></div>
+<div class="stat"><span>Best</span><b id="best">0</b></div>
+<div class="stat"><span>Accuracy</span><b id="acc">100%</b></div>
+<select class="select" id="modeSel">
+<option value="normal">Normal — Bugs only</option>
+<option value="hard">Hard — Bugs + Features (avoid)</option>
+<option value="insane">Insane — Fast + Features</option>
+<option value="zen">Zen — No timer, relax</option>
+</select>
+<button class="btn primary" id="startBtn">▶ Start Squashing</button>
+<button class="btn" id="resetBtn">↻ Reset</button>
+<div class="hint">
+<strong>How:</strong> Click green bugs (🐛) to squash. Avoid red features (✨) in Hard/Insane — they cost points.<br><br>
+<strong>Modes:</strong> Normal = only bugs, Hard = bugs+features, Insane = fast, Zen = endless.<br>
+Best saved locally. Accuracy = hits / total clicks.
+</div>
+</div>
+</div>
+<script>
+const arena=document.getElementById('arena'),scoreEl=document.getElementById('score'),timeEl=document.getElementById('time'),bestEl=document.getElementById('best'),accEl=document.getElementById('acc'),modeSel=document.getElementById('modeSel');
+let score=0,time=30,best=0,hits=0,clicks=0,timer=null,spawnTimer=null,playing=false;
+best=parseInt(localStorage.getItem('bug-best')||'0');bestEl.textContent=best;
+
+function init(){
+ arena.innerHTML='';score=0;time=modeSel.value==='zen'?999:30;hits=0;clicks=0;playing=false;clearInterval(timer);clearInterval(spawnTimer);
+ scoreEl.textContent=score;timeEl.textContent=modeSel.value==='zen'?'∞':time+'s';accEl.textContent='100%';
+}
+function spawn(){
+ if(!playing)return;
+ const isBad=modeSel.value!=='normal'&&Math.random()<0.35;
+ const bug=document.createElement('div');bug.className='bug '+(isBad?'bad':'good');
+ bug.textContent=isBad?'✨':'🐛';
+ let x=Math.random()*(arena.clientWidth-50),y=Math.random()*(arena.clientHeight-50);
+ bug.style.left=x+'px';bug.style.top=y+'px';
+ let life= modeSel.value==='insane'?900: modeSel.value==='hard'?1300:1500;
+ bug._timer=setTimeout(()=>{bug.remove();},life);
+ bug.onclick=(e)=>{
+  e.stopPropagation();
+  clearTimeout(bug._timer);
+  if(isBad){score=Math.max(0,score-5);hits=Math.max(0,hits-1);}else{score+= isBad?0: (modeSel.value==='insane'?3:1);hits++;}
+  clicks++;updateAcc();
+  bug.style.transform='scale(1.4)';bug.style.opacity='0';
+  setTimeout(()=>bug.remove(),120);
+  scoreEl.textContent=score;
+  if(score>best){best=score;bestEl.textContent=best;localStorage.setItem('bug-best',best);}
+ };
+ arena.appendChild(bug);
+ // move a bit
+ let iv=setInterval(()=>{
+  if(!bug.parentNode){clearInterval(iv);return;}
+  let nx=Math.random()*(arena.clientWidth-50),ny=Math.random()*(arena.clientHeight-50);
+  bug.style.left=nx+'px';bug.style.top=ny+'px';
+ }, modeSel.value==='insane'?300:600);
+ bug._move=iv;
+}
+function updateAcc(){let acc=clicks===0?100:Math.round(hits/clicks*100);accEl.textContent=acc+'%';}
+
+function start(){
+ if(playing)return;
+ playing=true;
+ init();playing=true;
+ score=0;hits=0;clicks=0;
+ let interval= modeSel.value==='insane'?280: modeSel.value==='hard'?400:550;
+ spawnTimer=setInterval(spawn,interval);
+ if(modeSel.value!=='zen'){
+  timer=setInterval(()=>{
+   time--;timeEl.textContent=time+'s';
+   if(time<=0){endGame();}
+  },1000);
+ }
+}
+function endGame(){
+ playing=false;clearInterval(timer);clearInterval(spawnTimer);
+ arena.querySelectorAll('.bug').forEach(b=>{clearTimeout(b._timer);clearInterval(b._move);});
+ setTimeout(()=>{alert(`Time! Score ${score}, Accuracy ${accEl.textContent}`);},100);
+}
+arena.addEventListener('click',e=>{
+ if(!playing||e.target!==arena)return;
+ clicks++;updateAcc();score=Math.max(0,score-1);scoreEl.textContent=score;
+});
+document.getElementById('startBtn').onclick=start;
+document.getElementById('resetBtn').onclick=init;
+modeSel.onchange=init;
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Neon Breach — Kunal's Arcade</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--red:#f85149;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+a{color:var(--blue);text-decoration:none}
+header{width:min(980px,94vw);margin:18px auto 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.wrap{width:min(980px,94vw);display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#121a28,#0f1724);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.term{padding:14px}
+.screen{background:#080e1b;border:1px solid #1a2a44;border-radius:12px;padding:12px;min-height:400px;font-size:13px;line-height:1.6;position:relative;overflow:hidden}
+.screen::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(88,166,255,.03) 2px 3px);pointer-events:none}
+.line{white-space:pre-wrap}
+.line.muted{color:var(--muted)}
+.line.green{color:var(--green)}
+.line.gold{color:var(--gold)}
+.line.red{color:var(--red)}
+.line.cyan{color:var(--cyan)}
+.inputRow{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.inputRow input{flex:1;min-width:140px;background:#0d1524;border:1px solid var(--line);border-radius:10px;padding:12px 12px;color:var(--text);font-family:inherit;font-size:14px;letter-spacing:.18em;text-transform:uppercase}
+.btn{appearance:none;border:1px solid var(--line);background:#0f1a2b;color:var(--text);padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px}
+.btn.primary{background:linear-gradient(180deg,#1b2a44,#122038);border-color:#2a4a7a}
+.btn:hover{transform:translateY(-1px);border-color:var(--blue)}
+.side{padding:14px;display:flex;flex-direction:column;gap:10px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.key{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#0d1524;border:1px solid var(--line);border-radius:10px;font-weight:800;cursor:pointer;font-size:18px}
+.key:hover{border-color:var(--blue)}
+.stat{display:flex;justify-content:space-between;padding:9px 10px;border-radius:10px;background:#0d1524;border:1px solid var(--line);font-size:13px}
+.select{width:100%;background:#0d1524;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px;font-family:inherit;font-size:12px}
+.hint{color:var(--muted);font-size:11px;line-height:1.6}
+.footer{width:min(980px,94vw);margin:14px auto;color:var(--muted);font-size:12px;text-align:center}
+.tag{font-size:10px;padding:3px 7px;border-radius:999px;border:1px solid var(--line);background:#0d1524;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — <span style="color:var(--green)">NEON BREACH</span> <span class="tag" id="modeTag">NORMAL 4</span></div>
+<a class="badge" href="./index.html">← All Games</a>
+</header>
+<div class="wrap">
+<div class="card term">
+<div class="screen" id="screen"></div>
+<div class="inputRow">
+<input id="guess" maxlength="6" placeholder="ENTER CODE" autocomplete="off" spellcheck="false"/>
+<button class="btn primary" id="submit">BREACH</button>
+<button class="btn" id="hintBtn">HINT</button>
+<button class="btn" id="newGame">NEW</button>
+</div>
+<div style="margin-top:8px;display:flex;gap:8px">
+<select class="select" id="modeSel">
+<option value="easy">Easy — 3 chars, 8 tries, A-F,0-1</option>
+<option value="normal" selected>Normal — 4 chars, 10 tries, A-F,0-3</option>
+<option value="hard">Hard — 5 chars, 10 tries, A-F,0-5</option>
+<option value="extreme">Extreme — 6 chars, 8 tries, A-F,0-7</option>
+<option value="timed">Timed — 4 chars, 60s, unlimited tries</option>
+<option value="mastermind">Mastermind — 4 chars, no repeats, 12 tries</option>
+</select>
+</div>
+</div>
+<div class="card side">
+<div class="stat"><span>Attempts</span><b id="attempts">0 / 10</b></div>
+<div class="stat"><span>Time</span><b id="timer">00:00</b></div>
+<div class="stat"><span>Best</span><b id="best">—</b></div>
+<div class="stat"><span>Streak</span><b id="streak">0</b></div>
+<div>
+<div class="hint" style="margin-bottom:8px"><strong style="color:var(--text)">How to hack:</strong><br>
+Guess the code. After each try:<br>
+<span style="color:var(--green)">●</span> = right char, right place<br>
+<span style="color:var(--gold)">●</span> = right char, wrong place<br>
+<span style="color:var(--muted)">●</span> = not in code<br><br>
+<b>Modes:</b> Easy 3, Normal 4, Hard 5, Extreme 6, Timed 60s, Mastermind no repeats.<br>
+Hint reveals one char (costs 1 attempt).
+</div>
+<div class="grid" id="keys"></div>
+</div>
+<div class="hint">Inspired by DataVortex + security. Logic puzzle, not real hacking. All local.</div>
+</div>
+</div>
+<div class="footer">Offline logic puzzle. After Pages: <code>kunalchwdry.github.io/kunalchwdry/games/hacker.html</code></div>
+<script>
+const MODES={
+ easy:{len:3,tries:8,chars:['A','B','C','D','E','F','0','1']},
+ normal:{len:4,tries:10,chars:['A','B','C','D','E','F','0','1','2','3']},
+ hard:{len:5,tries:10,chars:['A','B','C','D','E','F','0','1','2','3','4','5']},
+ extreme:{len:6,tries:8,chars:['A','B','C','D','E','F','0','1','2','3','4','5','6','7']},
+ timed:{len:4,tries:99,chars:['A','B','C','D','E','F','0','1','2','3'],time:60},
+ mastermind:{len:4,tries:12,chars:['A','B','C','D','E','F','0','1','2','3'],noRepeat:true}
+};
+let code=[],attempts=0,mode='normal',timer=null,sec=0,streak=0,best={},hintUsed=0;
+const screen=document.getElementById('screen'),guessInput=document.getElementById('guess'),attemptsEl=document.getElementById('attempts'),bestEl=document.getElementById('best'),streakEl=document.getElementById('streak'),timerEl=document.getElementById('timer'),modeSel=document.getElementById('modeSel'),modeTag=document.getElementById('modeTag');
+
+function loadBest(){try{return JSON.parse(localStorage.getItem('breach-best-v2')||'{}')}catch{return {}}; best=loadBest();}
+function saveBest(){localStorage.setItem('breach-best-v2',JSON.stringify(best));}
+function log(cls,text){const d=document.createElement('div');d.className='line '+cls;d.textContent=text;screen.appendChild(d);screen.scrollTop=screen.scrollHeight;}
+function gen(){
+ const cfg=MODES[mode];
+ code=[];
+ if(cfg.noRepeat){
+  let pool=[...cfg.chars].sort(()=>Math.random()-0.5);
+  code=pool.slice(0,cfg.len);
+ }else{
+  for(let i=0;i<cfg.len;i++)code.push(cfg.chars[Math.floor(Math.random()*cfg.chars.length)]);
+ }
+ attempts=0;sec=0;hintUsed=0;
+ screen.innerHTML='';
+ log('cyan',`> NEON BREACH v2.0 — MODE: ${mode.toUpperCase()} — ${cfg.len} chars, ${cfg.tries} tries`);
+ log('muted',`> CHARS: ${cfg.chars.join('')} ${cfg.noRepeat?'(no repeats)':''} ${cfg.time?`• ${cfg.time}s timed`:''}`);
+ log('green','> READY. ENTER CODE.');
+ guessInput.maxLength=cfg.len;
+ guessInput.placeholder=`ENTER ${cfg.len}-CHAR CODE`;
+ guessInput.disabled=false;guessInput.value='';
+ modeTag.textContent=`${mode.toUpperCase()} ${cfg.len}`;
+ update();
+ clearInterval(timer);
+ if(cfg.time){
+  timer=setInterval(()=>{sec++;timerEl.textContent=`${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;if(sec>=cfg.time){log('red',`> TIME UP! CODE WAS ${code.join('')}`);guessInput.disabled=true;clearInterval(timer);streak=0;streakEl.textContent=streak;}},1000);
+ }else{
+  timer=setInterval(()=>{sec++;timerEl.textContent=`${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;},1000);
+ }
+ renderKeys();
+}
+function feedback(guess){
+ let exact=0,exist=0;
+ let c=[...code],g=[...guess];
+ for(let i=0;i<c.length;i++)if(g[i]===c[i]){exact++;c[i]=g[i]=null;}
+ for(let i=0;i<g.length;i++)if(g[i]!=null){let j=c.indexOf(g[i]);if(j!==-1){exist++;c[j]=null;}}
+ return {exact,exist};
+}
+function renderDots(fb,cfg){
+ let html='';for(let i=0;i<fb.exact;i++)html+=`<span style="color:var(--green)">●</span>`;for(let i=0;i<fb.exist;i++)html+=`<span style="color:var(--gold)">●</span>`;for(let i=0;i<cfg.len-fb.exact-fb.exist;i++)html+=`<span style="color:var(--muted)">●</span>`;return html;
+}
+function submit(){
+ const cfg=MODES[mode];
+ let g=guessInput.value.toUpperCase().trim();
+ if(g.length!==cfg.len){log('red',`> ERROR: Code must be ${cfg.len} chars`);return;}
+ if(![...g].every(ch=>cfg.chars.includes(ch))){log('red',`> ERROR: Allowed ${cfg.chars.join('')} only`);return;}
+ attempts++;attemptsEl.textContent=`${attempts} / ${cfg.tries}`;
+ const fb=feedback([...g]);
+ const row=document.createElement('div');row.className='line';row.innerHTML=`> ${g}  ${renderDots(fb,cfg)}  (${fb.exact} exact, ${fb.exist} partial)`;
+ screen.appendChild(row);screen.scrollTop=screen.scrollHeight;
+ if(fb.exact===cfg.len){
+  clearInterval(timer);
+  log('green',`> ACCESS GRANTED in ${attempts} attempts, ${timerEl.textContent}! CODE ${code.join('')}`);
+  log('gold','> DATA STREAM UNLOCKED — TRACEABLE, VERIFIABLE, FRESH.');
+  streak++;streakEl.textContent=streak;
+  const key=`${mode}-${cfg.len}`;
+  if(!best[key]||attempts<best[key]){best[key]=attempts;saveBest();bestEl.textContent=best[key];log('cyan',`> NEW BEST for ${mode}: ${best[key]}`);}
+  guessInput.disabled=true;
+ }else if(attempts>=cfg.tries){
+  clearInterval(timer);
+  log('red',`> ACCESS DENIED. CODE WAS ${code.join('')}.`);
+  streak=0;streakEl.textContent=streak;
+  guessInput.disabled=true;
+ }else{
+  log('muted',`> ${cfg.tries-attempts} attempts left...`);
+ }
+ guessInput.value='';update();
+}
+function update(){
+ const cfg=MODES[mode];
+ attemptsEl.textContent=`${attempts} / ${cfg.tries}`;
+ bestEl.textContent=best[`${mode}-${cfg.len}`]||'—';
+ streakEl.textContent=streak;
+}
+function renderKeys(){
+ const cfg=MODES[mode];
+ const keys=document.getElementById('keys');keys.innerHTML='';
+ cfg.chars.forEach(ch=>{
+  const b=document.createElement('div');b.className='key';b.textContent=ch;
+  b.onclick=()=>{if(guessInput.value.length<cfg.len){guessInput.value+=ch;guessInput.focus();}};
+  keys.appendChild(b);
+ });
+ const del=document.createElement('div');del.className='key';del.textContent='⌫';del.onclick=()=>{guessInput.value=guessInput.value.slice(0,-1)};keys.appendChild(del);
+ const clr=document.createElement('div');clr.className='key';clr.textContent='CLR';clr.style.fontSize='12px';clr.onclick=()=>{guessInput.value=''};keys.appendChild(clr);
+}
+document.getElementById('submit').onclick=submit;
+document.getElementById('newGame').onclick=()=>{clearInterval(timer);gen();};
+document.getElementById('hintBtn').onclick=()=>{
+ if(hintUsed>=1){log('muted','> Only 1 hint per game');return;}
+ const cfg=MODES[mode];
+ let idx=Math.floor(Math.random()*cfg.len);
+ log('gold',`> HINT: Position ${idx+1} is ${code[idx]} (costs 1 attempt)`);
+ attempts++;hintUsed++;update();
+ if(attempts>=cfg.tries){log('red',`> OUT OF ATTEMPTS. CODE WAS ${code.join('')}`);guessInput.disabled=true;clearInterval(timer);}
+};
+guessInput.addEventListener('keydown',e=>{if(e.key==='Enter')submit();});
+modeSel.onchange=(e)=>{mode=e.target.value;clearInterval(timer);gen();};
+loadBest();gen();
+</script>
+</body>
+</html>
