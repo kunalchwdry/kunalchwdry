@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Questbound Clicker — Kunal's Arcade</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#233349;--cyan:#39d2ff;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--gold:#ffd166;--red:#f85149;--text:#e6edf3;--muted:#8b949e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1a2740 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#2a1a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:ui-monospace,JetBrains Mono,monospace;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+a{color:var(--blue);text-decoration:none}
+header{width:min(1020px,94vw);margin:18px auto 10px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#0f1724}
+.wrap{width:min(1020px,94vw);display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#121a28,#0f1724);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.main{padding:16px;text-align:center}
+.stats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.stat{min-width:110px;padding:9px 10px;border-radius:12px;background:#0d1524;border:1px solid var(--line)}
+.stat b{display:block;font-size:18px}
+.stat small{color:var(--muted);font-size:10px}
+.quest-btn{width:190px;height:190px;border-radius:50%;border:2px solid #2a4a7a;background:radial-gradient(180px 180px at 30% 30%,#1f3a5f,#122038 70%);color:var(--text);font-weight:900;font-size:17px;cursor:pointer;box-shadow:0 0 0 8px rgba(88,166,255,.08),0 20px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);transition:.08s;position:relative}
+.quest-btn:active{transform:scale(.96)}
+.quest-btn .pulse{position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(88,166,255,.25);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.15);opacity:0}}
+.bar{height:10px;background:#0d1524;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:10px auto;max-width:420px}
+.bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .25s}
+.shop{padding:14px;display:flex;flex-direction:column;gap:10px}
+.item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:12px;background:#0d1524;border:1px solid var(--line)}
+.item.can{border-color:#2a4a7a;box-shadow:0 0 0 1px rgba(88,166,255,.12)}
+.item b{font-size:12px}
+.item small{color:var(--muted);font-size:10px;display:block;margin-top:2px}
+.btn{appearance:none;border:1px solid var(--line);background:#0f1a2b;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px}
+.btn.primary{background:linear-gradient(180deg,#1b2a44,#122038);border-color:#2a4a7a}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.log{max-height:120px;overflow:auto;font-size:11px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--line);padding-top:10px;margin-top:8px;text-align:left}
+.hint{color:var(--muted);font-size:11px;line-height:1.5;text-align:center;padding:8px}
+.footer{width:min(1020px,94vw);margin:14px auto;color:var(--muted);font-size:12px;text-align:center}
+.select{width:100%;background:#0d1524;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px;font-family:inherit;font-size:12px}
+.boss{padding:10px;border-radius:12px;background:#1a1220;border:1px solid #3a2333;margin-top:8px}
+.boss-bar{height:8px;background:#0d1524;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:6px}
+.boss-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .2s}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">KUNAL / ARCADE — <span style="color:var(--gold)">QUESTBOUND CLICKER</span> <span style="font-size:10px;border:1px solid var(--line);padding:3px 7px;border-radius:999px;background:#0d1524" id="modeTag">NORMAL</span></div>
+<a class="badge" href="./index.html">← All Games</a>
+</header>
+<div class="wrap">
+<div class="card main">
+<div class="stats">
+<div class="stat"><small>LEVEL</small><b id="lvl">1</b></div>
+<div class="stat"><small>XP</small><b id="xp">0</b></div>
+<div class="stat"><small>GOLD</small><b id="gold">0</b></div>
+<div class="stat"><small>PER CLICK</small><b id="pcc">1</b></div>
+<div class="stat"><small>PRESTIGE</small><b id="prestige">×1</b></div>
+</div>
+<select class="select" id="modeSel">
+<option value="normal">Normal — Balanced</option>
+<option value="hardcore">Hardcore — 2× slower, 2× rewards</option>
+<option value="speedrun">Speedrun — Reach Lvl 25 fast</option>
+<option value="bossrush">Boss Rush — Boss every 5 levels</option>
+<option value="idle">Idle — Focus on passive</option>
+</select>
+<div style="margin:14px 0">
+<button class="quest-btn" id="clickBtn"><span class="pulse"></span>⚔️<br>COMPLETE<br>QUEST</button>
+</div>
+<div class="bar"><i id="xpBar"></i></div>
+<div class="boss" id="bossBox" style="display:none">
+<div style="display:flex;justify-content:space-between"><strong id="bossName">Boss</strong><span id="bossHpText">100%</span></div>
+<div class="boss-bar"><i id="bossBar"></i></div>
+<div style="font-size:11px;color:var(--muted);margin-top:4px">Click to damage boss! Defeat for huge gold.</div>
+</div>
+<div class="hint">Inspired by Questbound. Server-authoritative in real app — here it's local fun with offline save.</div>
+<div class="log" id="log"></div>
+</div>
+<div class="card shop">
+<div style="display:flex;justify-content:space-between;align-items:center"><strong>Shop — Upgrades</strong><div><button class="btn" id="prestigeBtn">Prestige</button> <button class="btn" id="resetBtn">Reset</button></div></div>
+<div id="shop"></div>
+<div class="hint" style="text-align:left">Prestige resets level but gives permanent ×1.5 multiplier. Boss Rush spawns boss every 5 levels. Gold bonus on level up scales with mode.</div>
+</div>
+</div>
+<div class="footer">Playable offline. After Pages: <code>kunalchwdry.github.io/kunalchwdry/games/quest.html</code></div>
+<script>
+const SHOP_BASE=[
+ {id:'sword',name:'⚔️ Iron Sword',desc:'+1 per click',cost:10,inc:1,type:'click'},
+ {id:'tome',name:'📖 Quest Tome',desc:'+2 per click',cost:50,inc:2,type:'click'},
+ {id:'oracle',name:'🔮 Oracle AI',desc:'+1 passive XP/sec',cost:80,inc:1,type:'passive'},
+ {id:'streak',name:'🔥 Streak Flame',desc:'+3 click, +1 passive',cost:200,inc:3,type:'both'},
+ {id:'castle',name:'🏰 Castle',desc:'+5 click, +3 passive',cost:600,inc:5,type:'both'},
+ {id:'dragon',name:'🐉 Dragon',desc:'+10 click, +8 passive',cost:1500,inc:10,type:'both'},
+];
+const MODES={
+ normal:{xpMult:1,goldMult:1,passiveMult:1,desc:'Balanced'},
+ hardcore:{xpMult:0.5,goldMult:2,passiveMult:0.5,desc:'2× slower, 2× gold'},
+ speedrun:{xpMult:2,goldMult:1,passiveMult:0.2,desc:'Fast XP, race to 25'},
+ bossrush:{xpMult:1,goldMult:1.5,passiveMult:1,desc:'Boss every 5'},
+ idle:{xpMult:0.3,goldMult:1,passiveMult:3,desc:'Idle focus'}
+};
+let state={lvl:1,xp:0,gold:0,pcc:1,pps:0,owned:{},prestige:1,mode:'normal',boss:null,bossHp:0};
+function load(){try{const s=JSON.parse(localStorage.getItem('quest-clicker-v2')||'null');if(s)state={...state,...s}}catch{}}
+function save(){localStorage.setItem('quest-clicker-v2',JSON.stringify(state))}
+function need(){return Math.floor(state.lvl*25 / MODES[state.mode].xpMult)}
+function render(){
+ document.getElementById('lvl').textContent=state.lvl;
+ document.getElementById('xp').textContent=state.xp;
+ document.getElementById('gold').textContent=state.gold;
+ document.getElementById('pcc').textContent=Math.floor(state.pcc*state.prestige);
+ document.getElementById('prestige').textContent=`×${state.prestige.toFixed(1)}`;
+ document.getElementById('xpBar').style.width=Math.min(100,Math.floor(state.xp/need()*100))+'%';
+ document.getElementById('modeTag').textContent=state.mode.toUpperCase();
+ const shop=document.getElementById('shop');shop.innerHTML='';
+ SHOP_BASE.forEach(it=>{
+  const owned=state.owned[it.id]||0;
+  const cost=Math.floor(it.cost*Math.pow(1.6,owned));
+  const can=state.gold>=cost;
+  const div=document.createElement('div');div.className='item'+(can?' can':'');
+  div.innerHTML=`<div><b>${it.name} ${owned?`×${owned}`:''}</b><small>${it.desc} — cost ${cost} gold</small></div><button class="btn primary" ${can?'':'disabled'}>Buy</button>`;
+  div.querySelector('button').onclick=()=>buy(it,cost);
+  shop.appendChild(div);
+ });
+ // boss
+ const bossBox=document.getElementById('bossBox');
+ if(state.boss){
+  bossBox.style.display='block';
+  document.getElementById('bossName').textContent=state.boss;
+  const pct=Math.max(0,Math.floor(state.bossHp/ state.bossMax *100));
+  document.getElementById('bossHpText').textContent=pct+'%';
+  document.getElementById('bossBar').style.width=pct+'%';
+ }else bossBox.style.display='none';
+ save();
+}
+function log(msg){const el=document.getElementById('log');const d=document.createElement('div');d.textContent=`[${new Date().toLocaleTimeString()}] ${msg}`;el.prepend(d)}
+function buy(it,cost){
+ if(state.gold<cost)return;
+ state.gold-=cost;state.owned[it.id]=(state.owned[it.id]||0)+1;
+ if(it.type==='click'||it.type==='both')state.pcc+=it.inc;
+ if(it.type==='passive'||it.type==='both')state.pps+=it.type==='both'?Math.ceil(it.inc/2):it.inc;
+ log(`Purchased ${it.name}`);
+ render();
+}
+function spawnBoss(){
+ const bosses=['Goblin King','Data Wraith','Bug Dragon','Null Pointer','Merge Conflict'];
+ const name=bosses[Math.floor(Math.random()*bosses.length)]+` Lvl ${state.lvl}`;
+ state.boss=name;state.bossMax=50+state.lvl*10;state.bossHp=state.bossMax;
+ log(`BOSS SPAWNED: ${name} — Click to defeat!`);
+}
+function addXp(n){
+ if(state.boss){
+  state.bossHp-=n;
+  if(state.bossHp<=0){
+   const reward=Math.floor(20+state.lvl*3*MODES[state.mode].goldMult);
+   state.gold+=reward;log(`BOSS DEFEATED! +${reward} gold`);
+   state.boss=null;
+  }
+  render();return;
+ }
+ state.xp+=n;
+ while(state.xp>=need()){
+  state.xp-=need();state.lvl++;
+  const goldGain=Math.floor((5+Math.floor(state.lvl/2))*MODES[state.mode].goldMult);
+  state.gold+=goldGain;
+  log(`Level up! Now ${state.lvl}. +${goldGain} gold.`);
+  if(state.mode==='bossrush'&&state.lvl%5===0)spawnBoss();
+  if(state.mode==='speedrun'&&state.lvl>=25){log('SPEEDRUN COMPLETE! Lvl 25 reached!');}
+ }
+ render();
+}
+document.getElementById('clickBtn').onclick=()=>{
+ const dmg=Math.floor(state.pcc*state.prestige);
+ addXp(dmg);
+ if(!state.boss&&Math.random()<.08){state.gold++;log('Bonus gold from quest!');render();}
+};
+document.getElementById('resetBtn').onclick=()=>{if(confirm('Reset progress?')){state={lvl:1,xp:0,gold:0,pcc:1,pps:0,owned:{},prestige:1,mode:modeSel.value,boss:null,bossHp:0};localStorage.removeItem('quest-clicker-v2');render();log('Progress reset.');}};
+document.getElementById('prestigeBtn').onclick=()=>{
+ if(state.lvl<10){alert('Need level 10 to prestige');return;}
+ if(confirm(`Prestige? Reset to lvl 1 but gain ×1.5 permanent multiplier. Current ×${state.prestige.toFixed(1)} → ×${(state.prestige*1.5).toFixed(1)}`)){
+  state.prestige*=1.5;state.lvl=1;state.xp=0;state.gold=0;state.pcc=1;state.pps=0;state.owned={};state.boss=null;
+  log(`Prestiged! New multiplier ×${state.prestige.toFixed(1)}`);
+  render();
+ }
+};
+document.getElementById('modeSel').onchange=(e)=>{
+ state.mode=e.target.value;
+ log(`Mode changed to ${state.mode}: ${MODES[state.mode].desc}`);
+ render();
+};
+load();
+document.getElementById('modeSel').value=state.mode;
+render();log(`Questbound clicker loaded — Mode: ${state.mode}. Click to earn XP.`);
+setInterval(()=>{if(state.pps>0){const gain=Math.floor(state.pps*state.prestige*MODES[state.mode].passiveMult);if(gain>0)addXp(gain)}},1000);
+</script>
+</body>
+</html>
